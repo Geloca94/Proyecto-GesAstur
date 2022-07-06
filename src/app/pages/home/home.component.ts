@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-
 
 @Component({
   selector: 'app-home',
@@ -8,8 +7,10 @@ import { AuthService } from 'src/app/services/auth.service';
   styles: [
   ]
 })
-export class HomeComponent {
+export class HomeComponent  {
 
-  constructor( private authService: AuthService ) { }
+  constructor(private authService: AuthService) { }
+
+  
 
 }
