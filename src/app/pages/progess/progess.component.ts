@@ -1,16 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-progess',
   templateUrl: './progess.component.html',
-  styles: [
+  styleUrls: ['./progess.component.css',
   ]
 })
-export class ProgessComponent implements OnInit {
+export class ProgessComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }
