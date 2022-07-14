@@ -10,14 +10,6 @@ import { ChartData, ChartEvent, ChartType, Color } from 'chart.js';
 })
 export class Grafica1Component {
 
-  public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData: ChartData<'doughnut'> = {
-    labels: this.doughnutChartLabels,
-    datasets: [
-      { data: [350, 450, 100] },
-    ]
-  };
+  public labels1: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
 
-
-  public doughnutChartType: ChartType = 'doughnut';
 }
