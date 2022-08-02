@@ -9,25 +9,25 @@ const { dbConnection } = require('./database/config');
 const app = express();
 
 // Configurar COORS 
-app.use(cors())
+app.use(cors());
+
+// Lectura y parseo del body
+app.use(express.json());
+
+
 
 // Base de datos
 dbConnection();
 
-//console.log(process.env);
 
 //apCMSBj8mZjmyumt
 //mean_user
 
 
 // Rutas
-app.get('/', (req, res) => {
+app.use('/api/usuarios', require('./routes/usuarios'));
 
-    res.json({
-        ok: true,
-        msg: 'Hola Mundo'
-    })
-});
+
 
 app.listen(process.env.PORT, () => {
     console.log('Servidor corriendo en puerto ' + process.env.PORT);
