@@ -1,0 +1,7 @@
+
+
+
+const generarJWT = (uid) => {
+
+
+}
