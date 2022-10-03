@@ -1,24 +1,24 @@
 
 const { response } = require('express');
 
-const Medico = require('../models/medico');
+const Auxiliar = require('../models/auxiliar');
 
-const getMedico = async (req, res = response) => {
-    const medicos = await Medico.find()
+const getAuxiliar = async (req, res = response) => {
+    const auxiliar = await auxiliar.find()
         .populate('usuario', 'nombre img')
         .populate('hospital', 'nombre img');
 
     res.json({
         ok: true,
-        medicos,
+        auxiliar,
 
     })
 }
 
-const crearMedico = async (req, res = response) => {
+const crearAuxiliar = async (req, res = response) => {
 
     const uid = req.uid;
-    const medico = new Medico({
+    const auxiliar = new Auxiliar({
         usuario: uid,
         ...req.body
     });
@@ -26,11 +26,11 @@ const crearMedico = async (req, res = response) => {
 
     try {
 
-        const medicoDB = await medico.save();
+        const auxiliarDB = await auxiliar.save();
 
         res.json({
             ok: true,
-            medico: medicoDB
+            auxiliar: auxiliarDB
         })
 
     } catch (error) {
@@ -44,32 +44,32 @@ const crearMedico = async (req, res = response) => {
 
 }
 
-const actualizarMedico = async (req, res = response) => {
+const actualizarAuxiliar = async (req, res = response) => {
     const id = req.params.id;
     const uid = req.uid;
 
     try {
 
-        const medico = await Medico.findById(id);
+        const auxiliar = await Auxiliar.findById(id);
 
-        if (!medico) {
+        if (!auxiliar) {
             return res.status(400).json({
                 ok: true,
-                msg: 'Medico no encontrado',
+                msg: 'Auxiliar no encontrado',
             });
         }
 
-        const cambiosMedico = {
+        const cambiosAxuliar = {
             ...req.body,
             usuario: uid
         }
 
-        const medicoActualizado = await Medico.findByIdAndUpdate(id, cambiosMedico, { new: true })
+        const auxiliarActualizado = await Auxiliar.findByIdAndUpdate(id, cambiosAxuliar, { new: true })
 
 
         res.json({
             ok: true,
-            medico: medicoActualizado
+            auxiliar: auxiliarActualizado
         })
     } catch (error) {
 
@@ -82,26 +82,26 @@ const actualizarMedico = async (req, res = response) => {
     }
 }
 
-const borrarMedico = async (req, res = response) => {
+const borrarAuxiliar = async (req, res = response) => {
     const id = req.params.id
     try {
 
-        const medico = await Medico.findById(id);
+        const auxiliar = await Auxiliar.findById(id);
 
-        if (!medico) {
+        if (!auxiliar) {
             return res.status(400).json({
                 ok: true,
-                msg: 'Medico no encontrado',
+                msg: 'Auxiliar no encontrado',
             });
         }
 
-        await Medico.findByIdAndDelete(id)
+        await Auxiliar.findByIdAndDelete(id)
 
 
 
         res.json({
             ok: true,
-            msg: 'Medico Eliminado'
+            msg: 'Auxiliar Eliminado'
         })
     } catch (error) {
 
@@ -115,8 +115,8 @@ const borrarMedico = async (req, res = response) => {
 }
 
 module.exports = {
-    getMedico,
-    crearMedico,
-    actualizarMedico,
-    borrarMedico
+    getAuxiliar,
+    crearAuxiliar,
+    actualizarAuxiliar,
+    borrarAuxiliar
 }

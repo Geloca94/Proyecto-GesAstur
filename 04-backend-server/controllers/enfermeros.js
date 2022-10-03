@@ -1,24 +1,24 @@
 
 const { response } = require('express');
 
-const Medico = require('../models/medico');
+const Enfermero = require('../models/enfermero');
 
-const getMedico = async (req, res = response) => {
-    const medicos = await Medico.find()
+const getEnfermero = async (req, res = response) => {
+    const enfermeros = await Enfermero.find()
         .populate('usuario', 'nombre img')
         .populate('hospital', 'nombre img');
 
     res.json({
         ok: true,
-        medicos,
+        enfermeros,
 
     })
 }
 
-const crearMedico = async (req, res = response) => {
+const crearEnfermero = async (req, res = response) => {
 
     const uid = req.uid;
-    const medico = new Medico({
+    const enfermero = new Enfermero({
         usuario: uid,
         ...req.body
     });
@@ -26,11 +26,11 @@ const crearMedico = async (req, res = response) => {
 
     try {
 
-        const medicoDB = await medico.save();
+        const enfermeroDB = await enfermero.save();
 
         res.json({
             ok: true,
-            medico: medicoDB
+            enfermero: enfermeroDB
         })
 
     } catch (error) {
@@ -44,32 +44,32 @@ const crearMedico = async (req, res = response) => {
 
 }
 
-const actualizarMedico = async (req, res = response) => {
+const actualizarEnfermero = async (req, res = response) => {
     const id = req.params.id;
     const uid = req.uid;
 
     try {
 
-        const medico = await Medico.findById(id);
+        const enfermero = await Enfermero.findById(id);
 
-        if (!medico) {
+        if (!enfermero) {
             return res.status(400).json({
                 ok: true,
-                msg: 'Medico no encontrado',
+                msg: 'Enfermero no encontrado',
             });
         }
 
-        const cambiosMedico = {
+        const cambiosEnfermero = {
             ...req.body,
             usuario: uid
         }
 
-        const medicoActualizado = await Medico.findByIdAndUpdate(id, cambiosMedico, { new: true })
+        const enfermeroActualizado = await Enfermero.findByIdAndUpdate(id, cambiosEnfermero, { new: true })
 
 
         res.json({
             ok: true,
-            medico: medicoActualizado
+            enfermero: enfermeroActualizado
         })
     } catch (error) {
 
@@ -82,26 +82,26 @@ const actualizarMedico = async (req, res = response) => {
     }
 }
 
-const borrarMedico = async (req, res = response) => {
+const borrarEnfermero = async (req, res = response) => {
     const id = req.params.id
     try {
 
-        const medico = await Medico.findById(id);
+        const enfermero = await Enfermero.findById(id);
 
-        if (!medico) {
+        if (!enfermero) {
             return res.status(400).json({
                 ok: true,
-                msg: 'Medico no encontrado',
+                msg: 'Enfermero no encontrado',
             });
         }
 
-        await Medico.findByIdAndDelete(id)
+        await Enfemero.findByIdAndDelete(id)
 
 
 
         res.json({
             ok: true,
-            msg: 'Medico Eliminado'
+            msg: 'Enfermero Eliminado'
         })
     } catch (error) {
 
@@ -115,8 +115,8 @@ const borrarMedico = async (req, res = response) => {
 }
 
 module.exports = {
-    getMedico,
-    crearMedico,
-    actualizarMedico,
-    borrarMedico
+    getEnfermero,
+    crearEnfermero,
+    actualizarEnfermero,
+    borrarEnfermero
 }

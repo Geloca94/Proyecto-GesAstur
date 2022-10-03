@@ -11,6 +11,9 @@ const app = express();
 // Configurar COORS 
 app.use(cors());
 
+//Carpeta publica
+app.use(express.static('public'));
+
 // Lectura y parseo del body
 app.use(express.json());
 
@@ -26,6 +29,8 @@ dbConnection();
 app.use('/api/usuarios', require('./routes/usuarios'));
 app.use('/api/hospitales', require('./routes/hospitales'));
 app.use('/api/medicos', require('./routes/medicos'));
+app.use('/api/enfemeros', require('./routes/enfermeros'));
+app.use('/api/auxiliares', require('./routes/auxiliares'));
 app.use('/api/todo', require('./routes/busquedas'));
 app.use('/api/login', require('./routes/auth'));
 app.use('/api/upload', require('./routes/uploades'));
