@@ -8,6 +8,7 @@ import { Grafica1Component } from './grafica1/grafica1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
+import { AuthGuard } from '../guards/auth.guard';
 
 //ng-router tab y haces un sniped
 
@@ -15,6 +16,7 @@ const routes: Routes = [
     {
         path: 'dashboard',
         component: PagesComponent,
+        canActivate: [AuthGuard],
         children: [
             { path: '', component: DashboardComponent, data: { titulo: 'Dasboard' } },
             { path: 'progress', component: ProgessComponent, data: { titulo: 'ProgressBar' } },
