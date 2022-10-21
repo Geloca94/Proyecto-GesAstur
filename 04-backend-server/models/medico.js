@@ -1,5 +1,6 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, SchemaType } = require('mongoose');
 const hospital = require('./hospital');
+const rol = require('./rol');
 const { collection } = require('./usuario');
 
 const MedicoSchema = Schema({
@@ -9,6 +10,16 @@ const MedicoSchema = Schema({
         require: true
 
     },
+    email: {
+        type: String,
+        require: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        require: true
+    },
+
     img: {
         type: String,
     },
@@ -21,6 +32,11 @@ const MedicoSchema = Schema({
         type: Schema.Types.ObjectId,
         ref: 'Hospital',
         required: true
+    },
+    rol: {
+        type: String,
+        required: true,
+        default: '2',
     }
 
 });

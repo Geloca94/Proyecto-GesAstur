@@ -2,9 +2,11 @@ const { response } = require('express');
 const bcrypt = require('bcrypt');
 
 const Usuario = require('../models/usuario');
+const Medico = require('../models/medico');
 const { generarJWT } = require('../helpers/jwt');
 
 const login = async (req, res = response) => {
+
 
     const { email, password } = req.body;
 
@@ -19,9 +21,9 @@ const login = async (req, res = response) => {
                 msg: 'Email no valido'
             });
         }
-
         //verificar Constraseña
         const validPassword = bcrypt.compareSync(password, usuarioDB.password);
+
         if (!validPassword) {
             return res.status(400).json({
                 ok: false,
@@ -29,11 +31,13 @@ const login = async (req, res = response) => {
             });
         }
 
+
         //Generar el TOKEN - JWT
         const token = await generarJWT(usuarioDB.id);
 
         res.json({
             ok: true,
+            msg: 'Logaste como Administrador',
             token
         })
 
@@ -42,11 +46,13 @@ const login = async (req, res = response) => {
         console.log(error);
         res.status(500).json({
             ok: false,
-            msg: 'Hable con el Administrador'
+            msg: 'Error al Loguear'
         })
     }
 
 }
+
+
 const googleSingIn = async (req, res = response) => {
 
     res.json({
@@ -62,10 +68,15 @@ const renewToken = async (req, res = response) => {
 
     //Generar el Token -JWT
     const token = await generarJWT(uid);
+
+    //Obtener el usuario por UID
+    const usuario = await Usuario.findById(uid);
     res.json({
         ok: true,
-        token
+        token,
+        usuario
     })
+
 }
 
 module.exports = {

@@ -17,9 +17,11 @@ router.post('/',
         check('password', 'El password es obligatorio').not().isEmpty(),
         validarCampos
     ],
+    //login,
     login
 
 )
+
 
 router.post('/google',
     [
