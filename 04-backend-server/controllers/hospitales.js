@@ -5,7 +5,7 @@ const Hospital = require('../models/hospital');
 const getHospitales = async (req, res = response) => {
 
     const hospitales = await Hospital.find()
-        .populate('usuario', 'nombre img');
+        .populate('administrador', 'nombre img');
 
     res.json({
         ok: true,
@@ -17,12 +17,12 @@ const crearHospital = async (req, res = response) => {
 
     const uid = req.uid;
     const hospital = new Hospital({
-        usuario: uid,
+        administrador: uid,
         ...req.body
     });
 
 
-    //console.log(usuario);
+    //console.log(administrador);
 
     try {
 
@@ -64,7 +64,7 @@ const actualizarHospital = async (req, res = response) => {
 
         const cambiosHospital = {
             ...req.body,
-            usuario: uid
+            administrador: uid
         }
 
         const hospitalActualizado = await Hospital.findByIdAndUpdate(id, cambiosHospital, { new: true })

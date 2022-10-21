@@ -1,7 +1,7 @@
 const { Schema, model, SchemaType } = require('mongoose');
 const hospital = require('./hospital');
 const rol = require('./rol');
-const { collection } = require('./usuario');
+const { collection } = require('./administrador');
 
 const MedicoSchema = Schema({
 
@@ -23,9 +23,9 @@ const MedicoSchema = Schema({
     img: {
         type: String,
     },
-    usuario: {
+    administrador: {
         type: Schema.Types.ObjectId,
-        ref: 'Usuario',
+        ref: 'Administrador',
         required: true
     },
     hospital: {

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { LoginForm } from '../interfaces/login-form.interface';
-import { Usuario } from '../models/usuario.model';
+import { Administrador } from '../models/administrador.model';
 
 
 const base_url = environment.base_url;
@@ -16,9 +16,9 @@ const base_url = environment.base_url;
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
+export class AdministradorService {
 
-  public usuario!: Usuario;
+  public administrador!: Administrador;
 
   constructor(private http: HttpClient,
     private router: Router) { }
@@ -46,9 +46,9 @@ export class UsuarioService {
           rol,
           img = '',
           uid
-        } = resp.usuario
+        } = resp.administrador
 
-        this.usuario = new Usuario(nombre, email, '', img, google, rol, uid)
+        this.administrador = new Administrador(nombre, email, '', img, google, rol, uid)
 
         localStorage.setItem('token', resp.token);
         return true;
@@ -57,9 +57,9 @@ export class UsuarioService {
     );
   }
 
-  crearUsuario(formData: RegisterForm) {
+  crearAdministrador(formData: RegisterForm) {
 
-    return this.http.post(`${base_url}/usuarios`, formData)
+    return this.http.post(`${base_url}/administradores`, formData)
       .pipe(
         tap((resp: any) => {
           localStorage.setItem('token', resp.token)

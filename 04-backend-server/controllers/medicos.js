@@ -6,7 +6,7 @@ const Paciente = require('../models/paciente');
 
 const getMedico = async (req, res = response) => {
     const medicos = await Medico.find()
-        .populate('usuario', 'nombre img')
+        .populate('administrador', 'nombre img')
         .populate('hospital', 'nombre img');
 
     res.json({
@@ -20,7 +20,7 @@ const crearMedico = async (req, res = response) => {
 
     const uid = req.uid;
     const medico = new Medico({
-        usuario: uid,
+        administrador: uid,
         ...req.body
     });
 
@@ -64,7 +64,7 @@ const actualizarMedico = async (req, res = response) => {
 
         const cambiosMedico = {
             ...req.body,
-            usuario: uid
+            administrador: uid
         }
 
         const medicoActualizado = await Medico.findByIdAndUpdate(id, cambiosMedico, { new: true })
@@ -172,7 +172,7 @@ const darCita = async (req, res = response) => {
 
         const crearCita = {
             ...req.body,
-            usuario: uid
+            administrador: uid
         }
 
         const medicoActualizado = await Medico.findByIdAndUpdate(id, cambiosMedico, { new: true })

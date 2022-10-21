@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const hospital = require('./hospital');
-const { collection } = require('./usuario');
+const { collection } = require('./administrador');
 
 const EnfermeroSchema = Schema({
 
@@ -22,9 +22,9 @@ const EnfermeroSchema = Schema({
     img: {
         type: String,
     },
-    usuario: {
+    administrador: {
         type: Schema.Types.ObjectId,
-        ref: 'Usuario',
+        ref: 'Administrador',
         required: true
     },
     hospital: {

@@ -2,7 +2,7 @@ import { environment } from "../../environments/environment"
 
 const base_url = environment.base_url;
 
-export class Usuario {
+export class Administrador {
 
     constructor(
         public nombre: string,
@@ -14,11 +14,11 @@ export class Usuario {
         public uid?: string,
     ) { }
     get imagenUrl() {
-        //upload/usuarios/no-image
+        //upload/administradores/no-image
         if (this.img) {
-            return `${base_url}/upload/usuarios/${this.img}`
+            return `${base_url}/upload/administradores/${this.img}`
         }
-        return `${base_url}/upload/usuarios/no-image`
+        return `${base_url}/upload/administradores/no-image`
     }
 }
 

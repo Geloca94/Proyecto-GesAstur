@@ -2,7 +2,7 @@
 //Este busca si existe  y funciones de borrar
 const fs = require('fs');
 
-const Usuario = require('../models/usuario');
+const Administrador = require('../models/administrador');
 const Medico = require('../models/medico');
 const Hospital = require('../models/hospital');
 
@@ -52,20 +52,20 @@ const actualizarImagen = async (tipo, id, nombreArchivo) => {
             return true;
 
             break;
-        case 'usuarios':
+        case 'administradores':
 
-            const usuario = await Usuario.findById(id);
-            if (!usuario) {
-                console.log('No se encontro el Usuario')
+            const administrador = await Administrador.findById(id);
+            if (!administrador) {
+                console.log('No se encontro el Administrador')
                 return false;
             }
 
             //EL PATH VIEJO 
-            const pathViejoUsuario = `./uploads/hospitales/${usuario.img}`;
-            borrarImagen(pathViejoUsuario);
+            const pathViejoAdministrador = `./uploads/hospitales/${administrador.img}`;
+            borrarImagen(pathViejoAdministrador);
 
-            usuario.img = nombreArchivo;
-            await usuario.save();
+            administrador.img = nombreArchivo;
+            await administrador.save();
             return true;
 
             break;

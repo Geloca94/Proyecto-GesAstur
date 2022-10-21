@@ -1,7 +1,7 @@
 const { Schema, model, SchemaType } = require('mongoose');
 const hospital = require('./hospital');
 const medico = require('./medico');
-const { collection } = require('./usuario');
+const { collection } = require('./administrador');
 
 const PacienteSchema = Schema({
 

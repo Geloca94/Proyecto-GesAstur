@@ -2,7 +2,7 @@
 
 const { response } = require('express');
 
-const Usuario = require('../models/usuario');
+const Administrador = require('../models/administrador');
 const Medico = require('../models/medico');
 const Hospital = require('../models/hospital');
 const hospital = require('../models/hospital');
@@ -16,8 +16,8 @@ const getTodo = async (req, res = response) => {
 
 
 
-    const [usuarios, medicos, hospitales] = await Promise.all([
-        Usuario.find({ nombre: regex }),
+    const [administradores, medicos, hospitales] = await Promise.all([
+        Administrador.find({ nombre: regex }),
         Medico.find({ nombre: regex }),
         Hospital.find({ nombre: regex })
 
@@ -25,7 +25,7 @@ const getTodo = async (req, res = response) => {
 
     res.json({
         ok: true,
-        usuarios,
+        administradores,
         medicos,
         hospitales
     })
@@ -42,18 +42,18 @@ const getDocumentosColeccion = async (req, res = response) => {
     switch (tabla) {
         case 'medicos':
             data = await Medico.find({ nombre: regex })
-                .populate('usuario', 'nombre img')
+                .populate('administrador', 'nombre img')
                 .populate('hospital', 'nombre img');
             break;
         case 'hospitales':
 
             data = await Hospital.find({ nombre: regex })
-                .populate('usuario', 'nombre img');
+                .populate('administrador', 'nombre img');
 
             break;
-        case 'usuarios':
+        case 'administradores':
 
-            data = await Usuario.find({ nombre: regex });
+            data = await Administrador.find({ nombre: regex });
 
             break;
 

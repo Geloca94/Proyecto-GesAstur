@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2'
 
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { AdministradorService } from 'src/app/services/administrador.service';
 
 
 
@@ -29,10 +29,10 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private usuarioService: UsuarioService,
+    private administradorService: AdministradorService,
     private router: Router) { }
 
-  crearUsuario() {
+  crearAdministrador() {
     this.formSubmitted = true;
     console.log(this.registerForm.value);
     //console.log(this.registerForm.get);
@@ -41,7 +41,7 @@ export class RegisterComponent {
       return;
     }
     //Realizar el Formulario
-    this.usuarioService.crearUsuario(this.registerForm.value)
+    this.administradorService.crearAdministrador(this.registerForm.value)
       .subscribe(resp => {
         //Navegar al Dashboard
         this.router.navigateByUrl('/');

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/models/usuario.model';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { Administrador } from 'src/app/models/administrador.model';
+import { AdministradorService } from 'src/app/services/administrador.service';
 
 @Component({
   selector: 'app-header',
@@ -10,15 +10,15 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class HeaderComponent {
 
-  public usuario: Usuario;
+  public administrador: Administrador;
 
-  constructor(private usuarioService: UsuarioService) {
-    this.usuario = usuarioService.usuario;
+  constructor(private administradorService: AdministradorService) {
+    this.administrador = administradorService.administrador;
 
   }
 
   logout() {
-    this.usuarioService.logout();
+    this.administradorService.logout();
   }
 
 

@@ -12,8 +12,8 @@ export class PromesasComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getUsuarios().then(usuarios => {
-      console.log(usuarios);
+    this.getAdministradors().then(administradores => {
+      console.log(administradores);
     });
 
 
@@ -31,7 +31,7 @@ export class PromesasComponent implements OnInit {
 
     //   console.log('Fin del Init');
   }
-  getUsuarios() {
+  getAdministradors() {
 
     return new Promise(resolve => {
 

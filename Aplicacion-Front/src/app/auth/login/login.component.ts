@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ChildActivationStart, Router } from '@angular/router';
-import { UsuarioService } from 'src/app/services/usuario.service';
+import { AdministradorService } from 'src/app/services/administrador.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -26,12 +26,12 @@ export class LoginComponent {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private usuarioService: UsuarioService) { }
+    private administradorService: AdministradorService) { }
 
 
   login() {
 
-    this.usuarioService.login(this.loginForm.value)
+    this.administradorService.login(this.loginForm.value)
       .subscribe(resp => {
 
         if (this.loginForm.get('remember')?.value) {

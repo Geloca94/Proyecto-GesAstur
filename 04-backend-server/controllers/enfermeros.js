@@ -5,7 +5,7 @@ const Enfermero = require('../models/enfermero');
 
 const getEnfermero = async (req, res = response) => {
     const enfermeros = await Enfermero.find()
-        .populate('usuario', 'nombre img')
+        .populate('administrador', 'nombre img')
         .populate('hospital', 'nombre img');
 
     res.json({
@@ -19,7 +19,7 @@ const crearEnfermero = async (req, res = response) => {
 
     const uid = req.uid;
     const enfermero = new Enfermero({
-        usuario: uid,
+        administrador: uid,
         ...req.body
     });
 
@@ -61,7 +61,7 @@ const actualizarEnfermero = async (req, res = response) => {
 
         const cambiosEnfermero = {
             ...req.body,
-            usuario: uid
+            administrador: uid
         }
 
         const enfermeroActualizado = await Enfermero.findByIdAndUpdate(id, cambiosEnfermero, { new: true })

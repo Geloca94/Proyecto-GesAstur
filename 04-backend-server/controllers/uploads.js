@@ -12,7 +12,7 @@ const fileUpload = (req, res = response) => {
     const id = req.params.id;
 
     //Validar Tipos
-    const tiposValidos = ['hospitales', 'medicos', 'usuarios'];
+    const tiposValidos = ['hospitales', 'medicos', 'administradores'];
     if (!tiposValidos.includes(tipo)) {
         return res.status(400).json({
             ok: false,
@@ -85,7 +85,7 @@ const retornaImagen = (req, res = response) => {
     const foto = req.params.foto;
 
     const pathImg = path.join(__dirname, `../uploads/${tipo}/${foto}`);
-    // Imagen si no existe la imagen del usuario
+    // Imagen si no existe la imagen del administrador
     if (fs.existsSync(pathImg)) {
         res.sendFile(pathImg);
     } else {

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { tap } from 'rxjs';
 
-import { UsuarioService } from '../services/usuario.service';
+import { AdministradorService } from '../services/administrador.service';
 
 
 @Injectable({
@@ -10,7 +10,7 @@ import { UsuarioService } from '../services/usuario.service';
 })
 export class AuthGuard implements CanActivate {
   //Proteccion de ruta para que te expulse
-  constructor(private usuarioService: UsuarioService,
+  constructor(private administradorService: AdministradorService,
     private router: Router) {
 
   }
@@ -19,9 +19,9 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
 
-    this.usuarioService.validarToken()
+    this.administradorService.validarToken()
 
-    return this.usuarioService.validarToken()
+    return this.administradorService.validarToken()
       .pipe(
         tap((estaAutentificado: any) => {
           if (!estaAutentificado) {

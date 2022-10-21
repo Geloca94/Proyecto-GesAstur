@@ -1,7 +1,7 @@
 const { response } = require('express');
 const bcrypt = require('bcrypt');
 
-const Usuario = require('../models/usuario');
+const Administrador = require('../models/administrador');
 const Medico = require('../models/medico');
 const { generarJWT } = require('../helpers/jwt');
 
@@ -13,16 +13,16 @@ const login = async (req, res = response) => {
 
     try {
         //Verificar Email
-        const usuarioDB = await Usuario.findOne({ email });
+        const administradorDB = await Administrador.findOne({ email });
 
-        if (!usuarioDB) {
+        if (!administradorDB) {
             return res.status(404).json({
                 ok: false,
                 msg: 'Email no valido'
             });
         }
         //verificar Constraseña
-        const validPassword = bcrypt.compareSync(password, usuarioDB.password);
+        const validPassword = bcrypt.compareSync(password, administradorDB.password);
 
         if (!validPassword) {
             return res.status(400).json({
@@ -33,7 +33,7 @@ const login = async (req, res = response) => {
 
 
         //Generar el TOKEN - JWT
-        const token = await generarJWT(usuarioDB.id);
+        const token = await generarJWT(administradorDB.id);
 
         res.json({
             ok: true,
@@ -69,12 +69,12 @@ const renewToken = async (req, res = response) => {
     //Generar el Token -JWT
     const token = await generarJWT(uid);
 
-    //Obtener el usuario por UID
-    const usuario = await Usuario.findById(uid);
+    //Obtener el administrador por UID
+    const administrador = await Administrador.findById(uid);
     res.json({
         ok: true,
         token,
-        usuario
+        administrador
     })
 
 }

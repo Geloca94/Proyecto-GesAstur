@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
-const { collection } = require('./usuario');
+const { collection } = require('./administrador');
 
 const HospitalSchema = Schema({
 
@@ -11,10 +11,10 @@ const HospitalSchema = Schema({
     img: {
         type: String,
     },
-    usuario: {
+    administrador: {
         required: true,
         type: Schema.Types.ObjectId,
-        ref: 'Usuario'
+        ref: 'Administrador'
     }
 }, { collection: 'hospitales' });
 

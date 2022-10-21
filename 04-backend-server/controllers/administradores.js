@@ -2,39 +2,39 @@ const { response } = require('express');
 const bcrypt = require('bcrypt');
 
 
-const Usuario = require('../models/usuario');
+const Administrador = require('../models/administrador');
 const { generarJWT } = require('../helpers/jwt');
 
 
-const getUsuarios = async (req, res) => {
+const getAdministradors = async (req, res) => {
 
     const desde = Number(req.query.desde) || 0;
 
-    const [usuarios, total] = await Promise.all([
-        Usuario
+    const [administradores, total] = await Promise.all([
+        Administrador
             .find({}, 'nombre email role google img')
             .skip(desde)
             .limit(5),
 
-        Usuario.countDocuments()
+        Administrador.countDocuments()
     ])
 
     res.json({
         ok: true,
-        usuarios,
+        administradores,
         total,
 
     });
 }
 
-const crearUsuario = async (req, res = response) => {
+const crearAdministrador = async (req, res = response) => {
 
     const { email, password } = req.body;
 
 
 
     try {
-        const existeEmail = await Usuario.findOne({ email });
+        const existeEmail = await Administrador.findOne({ email });
 
         if (existeEmail) {
             return res.status(400).json({
@@ -43,22 +43,22 @@ const crearUsuario = async (req, res = response) => {
             });
         }
 
-        const usuario = new Usuario(req.body);
+        const administrador = new Administrador(req.body);
 
         //Encriptar contraseña 
         const salt = bcrypt.genSaltSync();
-        usuario.password = bcrypt.hashSync(password, salt);
+        administrador.password = bcrypt.hashSync(password, salt);
 
 
-        //Guardar Usuario
-        await usuario.save();
+        //Guardar Administrador
+        await administrador.save();
 
         // Generar el TOKEN - JWT
-        const token = await generarJWT(usuario.id);
+        const token = await generarJWT(administrador.id);
 
         res.json({
             ok: true,
-            usuario,
+            administrador,
             token
         });
 
@@ -74,34 +74,34 @@ const crearUsuario = async (req, res = response) => {
 
 }
 
-const actualizarUsuario = async (req, res = response) => {
+const actualizarAdministrador = async (req, res = response) => {
 
-    // TODO: Validar token y comprobar si es el usuario correcto
+    // TODO: Validar token y comprobar si es el administrador correcto
 
     const uid = req.params.id;
 
 
     try {
 
-        const usuarioDB = await Usuario.findById(uid);
+        const administradorDB = await Administrador.findById(uid);
 
-        if (!usuarioDB) {
+        if (!administradorDB) {
             return res.status(404).json({
                 ok: false,
-                msg: 'No existe un usuario por ese id'
+                msg: 'No existe un administrador por ese id'
             });
         }
 
         //Actualizaciones
         const { password, google, email, ...campos } = req.body;
 
-        if (usuarioDB.email !== email) {
+        if (administradorDB.email !== email) {
 
-            const existeEmail = await Usuario.findOne({ email })
+            const existeEmail = await Administrador.findOne({ email })
             if (existeEmail) {
                 return res.status(400).json({
                     ok: false,
-                    msg: 'Ya existe un usuario con ese email'
+                    msg: 'Ya existe un administrador con ese email'
                 });
             }
         }
@@ -109,12 +109,12 @@ const actualizarUsuario = async (req, res = response) => {
         campos.email = email;
 
 
-        const usuarioActualizado = await Usuario.findOneAndUpdate(uid, campos, { new: true });
+        const administradorActualizado = await Administrador.findOneAndUpdate(uid, campos, { new: true });
 
 
         res.json({
             ok: true,
-            usuario: usuarioActualizado
+            administrador: administradorActualizado
         })
 
 
@@ -128,26 +128,26 @@ const actualizarUsuario = async (req, res = response) => {
 
 }
 
-const borrarUsuario = async (req, res = response) => {
+const borrarAdministrador = async (req, res = response) => {
 
     const uid = req.params.id;
 
     try {
 
-        const usuarioDB = await Usuario.findById(uid);
+        const administradorDB = await Administrador.findById(uid);
 
-        if (!usuarioDB) {
+        if (!administradorDB) {
             return res.status(404).json({
                 ok: false,
-                msg: 'No existe un usuario por ese id'
+                msg: 'No existe un administrador por ese id'
             });
         }
 
-        await Usuario.findByIdAndDelete(uid);
+        await Administrador.findByIdAndDelete(uid);
 
         res.json({
             ok: true,
-            msg: 'Usuario eliminado'
+            msg: 'Administrador eliminado'
         });
 
     } catch (error) {
@@ -161,10 +161,10 @@ const borrarUsuario = async (req, res = response) => {
 
 
 module.exports = {
-    getUsuarios,
-    crearUsuario,
-    actualizarUsuario,
-    borrarUsuario,
+    getAdministradors,
+    crearAdministrador,
+    actualizarAdministrador,
+    borrarAdministrador,
 
 
 }

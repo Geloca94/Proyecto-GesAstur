@@ -1,18 +1,18 @@
 
 /*
-Ruta: /api/usuario
+Ruta: /api/administrador
 */
 
 const { Router } = require('express');
 const { check } = require('express-validator');
 const { validarCampos } = require('../middlewares/validar-campos');
 
-const { getUsuarios, crearUsuario, actualizarUsuario, borrarUsuario } = require('../controllers/usuarios');
+const { getAdministradors, crearAdministrador, actualizarAdministrador, borrarAdministrador } = require('../controllers/administradores');
 const { validarJWT } = require('../middlewares/validar-jwt');
 
 const router = Router();
 
-router.get('/', validarJWT, getUsuarios);
+router.get('/', validarJWT, getAdministradors);
 
 router.post('/',
     [
@@ -21,7 +21,7 @@ router.post('/',
         check('email', 'El email es obligatorio').isEmail(),
         validarCampos,
     ],
-    crearUsuario
+    crearAdministrador
 );
 
 router.put('/:id',
@@ -33,13 +33,13 @@ router.put('/:id',
         validarCampos,
 
     ],
-    actualizarUsuario
+    actualizarAdministrador
 );
 
 
 router.delete('/:id',
     validarJWT,
-    borrarUsuario
+    borrarAdministrador
 );
 
 
