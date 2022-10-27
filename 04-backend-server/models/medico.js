@@ -33,7 +33,7 @@ const MedicoSchema = Schema({
         ref: 'Hospital',
         required: true
     },
-    rol: {
+    role: {
         type: String,
         required: true,
         default: '2',

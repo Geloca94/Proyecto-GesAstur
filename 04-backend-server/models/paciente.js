@@ -20,6 +20,7 @@ const PacienteSchema = Schema({
         ref: 'Hospital',
     }
 
+
 }, { collection: 'pacientes' });
 
 PacienteSchema.method('toJSON', function () {

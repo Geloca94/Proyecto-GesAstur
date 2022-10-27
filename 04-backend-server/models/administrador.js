@@ -19,7 +19,7 @@ const AdministradorSchema = Schema({
     img: {
         type: String,
     },
-    rol: {
+    role: {
         type: String,
         require: true,
         default: '1',

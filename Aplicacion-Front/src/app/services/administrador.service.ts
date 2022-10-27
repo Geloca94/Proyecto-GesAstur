@@ -19,10 +19,21 @@ const base_url = environment.base_url;
 export class AdministradorService {
 
   public administrador!: Administrador;
+  nombre: any;
+  email: any;
 
   constructor(private http: HttpClient,
     private router: Router) { }
   //Procedimiento para validar tu token y que te saque del dasboard
+
+
+  get token(): string {
+    return localStorage.getItem('token') || '';
+  }
+  get uid(): string {
+    return this.administrador.uid || '';
+  }
+
 
   logout() {
     localStorage.removeItem('token');
@@ -30,11 +41,11 @@ export class AdministradorService {
   }
 
   validarToken(): Observable<boolean> {
-    const token = localStorage.getItem('token') || '';
+
 
     return this.http.get(`${base_url}/login/renew`, {
       headers: {
-        'x-token': token
+        'x-token': this.token
       }
     }).pipe(
       map((resp: any) => {
@@ -43,12 +54,12 @@ export class AdministradorService {
           email,
           google,
           nombre,
-          rol,
+          role,
           img = '',
           uid
         } = resp.administrador
 
-        this.administrador = new Administrador(nombre, email, '', img, google, rol, uid)
+        this.administrador = new Administrador(nombre, email, '', img, google, role, uid)
 
         localStorage.setItem('token', resp.token);
         return true;
@@ -67,6 +78,22 @@ export class AdministradorService {
       )
 
   }
+
+  actualizarPerfil(data: { email: string, nombre: string, role: string | undefined }) {
+
+    data = {
+      ...data,
+      role: this.administrador.role
+    }
+    return this.http.put(`${base_url}/administradores/${this.uid}`, data, {
+      headers: {
+        'x-token': this.token
+      }
+    });
+
+  }
+
+
 
   login(formData: LoginForm) {
 

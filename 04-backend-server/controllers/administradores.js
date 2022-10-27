@@ -1,6 +1,6 @@
 const { response } = require('express');
 const bcrypt = require('bcrypt');
-
+//mongodb+srv://boss:boss@gesastur.agxfs14.mongodb.net/gesAstur
 
 const Administrador = require('../models/administrador');
 const { generarJWT } = require('../helpers/jwt');

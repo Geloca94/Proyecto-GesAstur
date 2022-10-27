@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -18,7 +18,6 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
-
 
 
 
@@ -41,11 +40,12 @@ import { PerfilComponent } from './perfil/perfil.component';
     PagesComponent,
     AccountSettingsComponent,
     PromesasComponent,
+    //PerfilComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
-
+    ReactiveFormsModule,
     SharedModule,
     RouterModule,
     ComponentsModule,

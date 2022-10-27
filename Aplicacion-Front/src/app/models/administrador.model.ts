@@ -10,7 +10,7 @@ export class Administrador {
         public password?: string,
         public img?: string,
         public google?: boolean,
-        public rol?: string,
+        public role?: string,
         public uid?: string,
     ) { }
     get imagenUrl() {
