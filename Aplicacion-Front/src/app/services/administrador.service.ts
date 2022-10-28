@@ -6,8 +6,12 @@ import { Router } from '@angular/router';
 
 import { environment } from 'src/environments/environment';
 
+//Interfaces
 import { RegisterForm } from '../interfaces/register-form.interface';
 import { LoginForm } from '../interfaces/login-form.interface';
+import { CargarAdministradores } from '../interfaces/cargar-administradores.interface';
+
+
 import { Administrador } from '../models/administrador.model';
 
 
@@ -34,6 +38,13 @@ export class AdministradorService {
     return this.administrador.uid || '';
   }
 
+  get headers() {
+    return {
+      headers: {
+        'x-token': this.token
+      }
+    }
+  }
 
   logout() {
     localStorage.removeItem('token');
@@ -105,8 +116,12 @@ export class AdministradorService {
       );
   }
 
+  //Para Paginar en una tabla los administradores
+  cargarAdministradores(desde: number = 0) {
 
-
-
+    //localhost:300'/api/administradores?desde=0
+    const url = `${base_url}/administradores?desde=${desde}`;
+    return this.http.get<CargarAdministradores>(url, this.headers);
+  }
 
 }
