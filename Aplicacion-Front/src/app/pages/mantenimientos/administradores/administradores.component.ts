@@ -12,6 +12,8 @@ export class AdministradoresComponent implements OnInit {
   public totalAdministradores: number = 0;
   public administradores: Administrador[] = [];
   public desde: number = 0;
+  //Esto esto sera para que al cargar administradores te salte el rootacion
+  public cargando: boolean = true;
 
   constructor(private administradorService: AdministradorService) { }
 
@@ -21,10 +23,12 @@ export class AdministradoresComponent implements OnInit {
   }
 
   cargarAdministradores() {
+    this.cargando = true;
     this.administradorService.cargarAdministradores(this.desde)
       .subscribe(({ total, administradores }) => {
         this.totalAdministradores = total;
         this.administradores = administradores;
+        this.cargando = false;
       })
   }
 

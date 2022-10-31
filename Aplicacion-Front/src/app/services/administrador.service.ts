@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, tap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
 import { Router } from '@angular/router';
+
+import { catchError, delay, map, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
 
@@ -121,7 +122,20 @@ export class AdministradorService {
 
     //localhost:300'/api/administradores?desde=0
     const url = `${base_url}/administradores?desde=${desde}`;
-    return this.http.get<CargarAdministradores>(url, this.headers);
+    return this.http.get<CargarAdministradores>(url, this.headers)
+      .pipe(
+        delay(5000),
+        map(resp => {
+          const administradores = resp.administradores.map(
+            administrador => new Administrador(administrador.nombre, administrador.email, '', administrador.img, administrador.google, administrador.uid)
+          );
+
+          return {
+            total: resp.total,
+            administradores
+          };
+        })
+      )
   }
 
 }

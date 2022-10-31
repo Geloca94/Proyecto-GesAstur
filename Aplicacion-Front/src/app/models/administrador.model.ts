@@ -15,6 +15,10 @@ export class Administrador {
     ) { }
     get imagenUrl() {
         //upload/administradores/no-image
+        /*if (this.img.includes('https')){
+            return this.img;
+        }*/
+
         if (this.img) {
             return `${base_url}/upload/administradores/${this.img}`
         }

@@ -10,7 +10,7 @@
     </div>
 </div>
 
-<div class="row animated fadeIn fast">
+<div class="row animated fadeIn fast" *ngIf="cargando">
     <div class=" col-12">
         <div class="alert alert-info text-center">
             <h4 class="alert-heading">Cargando</h4>
@@ -32,21 +32,23 @@
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th>Imagen de Usuario</th>
+                                <th class="w100">Imagen</th>
                                 <th>Correo</th>
                                 <th>Nombre</th>
-                                <th>Role</th>
-                                <th class="text-nowrap">Acciones</th>
+                                <th class="w100">ID</th>
+                                <th class="text-nowrap w100">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let administrador of administradores">
-                                <td>xxxxxx</td>
-                                <td class="label label-info">{{administrador.email}}</td>
+                                <td>
+                                    <img [src]="administrador.imagenUrl" alt="Imagen de Personal" class="avatar">
+                                </td>
+                                <td class="">{{administrador.email}}</td>
                                 <td>{{administrador.nombre}}</td>
                                 <td>{{administrador.role}}</td>
 
-                                <td class="text-nowrap">
+                                <td class="text-nowrap text-center">
                                     <a href="#" data-toggle="tooltip" data-original-title="Editar"> <i
                                             class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                     <a href="#" data-toggle="tooltip" data-original-title="Borrar"> <i
