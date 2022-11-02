@@ -124,8 +124,9 @@ export class AdministradorService {
     const url = `${base_url}/administradores?desde=${desde}`;
     return this.http.get<CargarAdministradores>(url, this.headers)
       .pipe(
-        delay(5000),
+        delay(500),
         map(resp => {
+          console.log(resp);
           const administradores = resp.administradores.map(
             administrador => new Administrador(administrador.nombre, administrador.email, '', administrador.img, administrador.google, administrador.uid)
           );

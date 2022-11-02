@@ -3,7 +3,9 @@
         <div class="card">
             <div class="card-body">
 
-                <input type="text" class="form-control" placeholder="Buscar Admin...">
+                <input type="text" class="form-control" placeholder="Buscar Admin..." (keyup)="buscar(txtTermino.value)"
+                    #txtTermino />
+                <!-- TxtTermino es propio de Angualar-->
 
             </div>
         </div>
@@ -35,7 +37,7 @@
                                 <th class="w100">Imagen</th>
                                 <th>Correo</th>
                                 <th>Nombre</th>
-                                <th class="w100">ID</th>
+                                <th class="w100">Rol</th>
                                 <th class="text-nowrap w100">Acciones</th>
                             </tr>
                         </thead>
@@ -58,11 +60,14 @@
                         </tbody>
                     </table>
                 </div>
+                <div *ngIf="txtTermino.value.length ===  0">
 
-                <button (click)="cambiarPagina(-5)" class="btn btn-secondary">Pagina Anterior</button>
-                &nbsp;
-                <button (click)="cambiarPagina(5)" class="btn btn-secondary">Pagina Siguiente</button>
-                &nbsp;
+                    <button (click)="cambiarPagina(-5)" class="btn btn-secondary">Pagina Anterior</button>
+                    &nbsp;
+                    <button (click)="cambiarPagina(5)" class="btn btn-secondary">Pagina Siguiente</button>
+                    &nbsp;
+
+                </div>
                 <p>Total de Paginas {{desde}}</p>
             </div>
         </div>
