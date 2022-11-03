@@ -1,4 +1,6 @@
+import { Target } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { FormBuilder, FormGroup, FormRecord, Validators } from '@angular/forms';
 import { AdministradorService } from 'src/app/services/administrador.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
@@ -15,7 +17,7 @@ export class PerfilComponent implements OnInit {
 
   public perfilForm!: FormGroup;
   public administrador: AdministradorService;
-  public imagenSubir: File | undefined;
+  public imagenSubir!: File;
 
 
   constructor(
@@ -45,14 +47,27 @@ export class PerfilComponent implements OnInit {
         const { nombre, email } = this.perfilForm.value;
         this.administrador.nombre = nombre;
         this.administrador.email = email;
+
+
         //Chapuza para que recargue la pagina
         window.location.href = window.location.href;
-      })
+      }, (err) => {
+        Swal.fire('No se pudo guardar los cambios', err.error.msg, 'error');
+      });
   }
 
   cambiarImagen(event: any) {
-    //CambiarImagen(file:File)
-    console.log(event);
+    //Intente meterlo en el html pero no era una propiedad asi que lo inserte directamente por detras
+    const file = event.target.files[0];
 
+    this.imagenSubir = file;
+
+  }
+
+  subirImagen() {
+    //Le paso la imagen que quiero subir donde quiero subirla y la uid de quien quiero subirla
+    this.fileUploadService.sactualizarFoto(this.imagenSubir, 'administradores', this.administrador.uid);
+
+    window.location.href = window.location.href;
   }
 }

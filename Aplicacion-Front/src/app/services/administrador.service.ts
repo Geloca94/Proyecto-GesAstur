@@ -47,6 +47,8 @@ export class AdministradorService {
     }
   }
 
+
+
   logout() {
     localStorage.removeItem('token');
     this.router.navigateByUrl('/login');
