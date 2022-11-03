@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
+
 import { Administrador } from 'src/app/models/administrador.model';
 import { AdministradorService } from 'src/app/services/administrador.service';
 import { BusquedasService } from 'src/app/services/busquedas.service';
@@ -69,6 +71,40 @@ export class AdministradoresComponent implements OnInit {
         this.administradores = resp;
       });
     return
+  }
+
+  eliminarAdministrador(administrador: Administrador) {
+
+
+    if (administrador.uid === this.administradorService.uid) {
+      return Swal.fire('Error', 'No te puedes borrar a ti mismo', 'error')
+    }
+
+
+
+
+    Swal.fire({
+      title: '¿Estas Seguro?',
+      text: `Estas apunto de borrar a ${administrador.nombre}`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Borrar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.administradorService.eliminarAdministrador(administrador)
+          .subscribe(resp => {
+            this.cargarAdministradores();
+            Swal.fire(
+              'Usuario borrado',
+              `${administrador.nombre} fue eliminado Correctamente`,
+              'success'
+            );
+          })
+      }
+    })
+    return;
   }
 
 }

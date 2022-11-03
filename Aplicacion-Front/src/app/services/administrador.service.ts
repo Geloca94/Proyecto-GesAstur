@@ -66,14 +66,13 @@ export class AdministradorService {
 
         const {
           email,
-          google,
           nombre,
-          role,
           img = '',
+          role,
           uid
         } = resp.administrador
 
-        this.administrador = new Administrador(nombre, email, '', img, google, role, uid)
+        this.administrador = new Administrador(nombre, email, '', img, role, uid)
 
         localStorage.setItem('token', resp.token);
         return true;
@@ -130,7 +129,7 @@ export class AdministradorService {
         map(resp => {
           console.log(resp);
           const administradores = resp.administradores.map(
-            administrador => new Administrador(administrador.nombre, administrador.email, '', administrador.img, administrador.google, administrador.uid)
+            administrador => new Administrador(administrador.nombre, administrador.email, '', administrador.img, administrador.role, administrador.uid)
           );
 
           return {
@@ -139,6 +138,18 @@ export class AdministradorService {
           };
         })
       )
+  }
+
+  eliminarAdministrador(administrador: Administrador) {
+
+    //administrador/634e3ccdb52cf0ea077cef3f
+
+    const url = `${base_url}/administradores/${administrador.uid}`;
+    //Le mando la peticion Delete mas el token en el header
+    return this.http.delete(url, this.headers);
+    //console.log(url);
+
+
   }
 
 }
