@@ -11,9 +11,11 @@ const base_url = environment.base_url;
 export class ModalImagenService {
 
   private _ocultarModal: boolean = true;
-  public tipo: string | undefined;
-  public id: string | undefined;
-  public img: string | undefined;
+  public tipo: String | undefined;
+  public id: String | undefined;
+  public img: String | undefined;
+
+  constructor() { }
 
 
 
