@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 
 import { Administrador } from 'src/app/models/administrador.model';
+
+
 import { AdministradorService } from 'src/app/services/administrador.service';
 import { BusquedasService } from 'src/app/services/busquedas.service';
+import { ModalImagenService } from 'src/app/services/modal-imagen.service';
 
 @Component({
   selector: 'app-administradores',
@@ -23,7 +26,8 @@ export class AdministradoresComponent implements OnInit {
 
   constructor(
     private administradorService: AdministradorService,
-    private busquedasService: BusquedasService) { }
+    private busquedasService: BusquedasService,
+    private modalImagenService: ModalImagenService) { }
 
   ngOnInit(): void {
     this.cargarAdministradores();
@@ -105,6 +109,18 @@ export class AdministradoresComponent implements OnInit {
       }
     })
     return;
+  }
+
+  cambiarRol(administrador: Administrador) {
+    this.administradorService.guardarAdministradorRol(administrador)
+      .subscribe(resp => {
+        console.log(resp);
+      })
+  }
+
+  abrirModal(administrador: Administrador) {
+    console.log(administrador)
+    this.modalImagenService.abrirModal();
   }
 
 }

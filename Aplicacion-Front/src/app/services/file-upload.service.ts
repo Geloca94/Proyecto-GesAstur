@@ -13,7 +13,7 @@ export class FileUploadService {
 
   //Puedo hacerlo asincrono
 
-  async sactualizarFoto(
+  async actualizarFoto(
     archivo: File,
     tipo: 'administradores' | 'medicos' | 'hospitales',
     id: string

@@ -18,6 +18,8 @@ export class PerfilComponent implements OnInit {
   public perfilForm!: FormGroup;
   public administrador: AdministradorService;
   public imagenSubir!: File;
+  public imgTemp: any = null;
+
 
 
   constructor(
@@ -49,8 +51,11 @@ export class PerfilComponent implements OnInit {
         this.administrador.email = email;
 
 
-        //Chapuza para que recargue la pagina
-        window.location.href = window.location.href;
+        //Funcion para recargar la pagina
+        /* setTimeout(() => {
+           window.location.href = window.location.href;
+         }, 500);*/
+
       }, (err) => {
         Swal.fire('No se pudo guardar los cambios', err.error.msg, 'error');
       });
@@ -62,12 +67,26 @@ export class PerfilComponent implements OnInit {
 
     this.imagenSubir = file;
 
+    if (!file) {
+      return this.imgTemp = null;
+    }
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      this.imgTemp = reader.result;
+    }
+    return
+
   }
 
   subirImagen() {
     //Le paso la imagen que quiero subir donde quiero subirla y la uid de quien quiero subirla
-    this.fileUploadService.sactualizarFoto(this.imagenSubir, 'administradores', this.administrador.uid);
+    this.fileUploadService.actualizarFoto(this.imagenSubir, 'administradores', this.administrador.uid);
+    setTimeout(() => {
+      window.location.href = window.location.href;
+    }, 500);
 
-    window.location.href = window.location.href;
   }
 }

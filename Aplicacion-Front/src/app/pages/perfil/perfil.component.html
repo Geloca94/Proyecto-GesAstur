@@ -43,10 +43,11 @@
             <div class="card-body">
                 <h4 class="card-title">Avatar</h4>
                 <h6 class="card-subtitle">Imagen del Perfil</h6>
-                <img [src]="">
+
+                <img *ngIf="imgTemp" [src]="imgTemp" class="img-avatar">
 
                 <input type="file" (change)="cambiarImagen($event)">
-                <!-- Error Em files $evemt-target.files[0]-->
+
                 <br>
                 <br>
 

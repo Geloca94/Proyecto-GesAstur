@@ -22,7 +22,7 @@ const AdministradorSchema = Schema({
     role: {
         type: String,
         require: true,
-        default: '1',
+
     },
     google: {
         type: Boolean,

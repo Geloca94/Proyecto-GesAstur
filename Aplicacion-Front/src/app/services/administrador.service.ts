@@ -98,11 +98,8 @@ export class AdministradorService {
       ...data,
       role: this.administrador.role
     }
-    return this.http.put(`${base_url}/administradores/${this.uid}`, data, {
-      headers: {
-        'x-token': this.token
-      }
-    });
+
+    return this.http.put(`${base_url}/administradores/${this.uid}`, data, this.headers);
 
   }
 
@@ -149,6 +146,12 @@ export class AdministradorService {
     return this.http.delete(url, this.headers);
     //console.log(url);
 
+
+  }
+
+  guardarAdministradorRol(administrador: Administrador) {
+
+    return this.http.put(`${base_url}/administradores/${administrador.uid}`, administrador, this.headers);
 
   }
 
