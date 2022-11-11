@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FileUploadService } from 'src/app/services/file-upload.service';
 import { ModalImagenService } from '../../services/modal-imagen.service';
 
 @Component({
@@ -13,7 +14,9 @@ export class ModalImagenComponent implements OnInit {
   public imgTemp: any = null;
 
 
-  constructor(public modalImagenService: ModalImagenService) { }
+  constructor(
+    public modalImagenService: ModalImagenService,
+    public fileUploadService: FileUploadService) { }
 
   ngOnInit(): void {
   }
@@ -41,5 +44,18 @@ export class ModalImagenComponent implements OnInit {
       this.imgTemp = reader.result;
     }
     return
+  }
+
+  subirImagen() {
+    const id = this.modalImagenService.id;
+    const tipo = this.modalImagenService.tipo;
+
+    //Le paso la imagen que quiero subir donde quiero subirla y la uid de quien quiero subirla
+
+    this.fileUploadService.actualizarFoto(this.imagenSubir, tipo, id);
+    setTimeout(() => {
+      window.location.href = window.location.href;
+    }, 500);
+
   }
 }

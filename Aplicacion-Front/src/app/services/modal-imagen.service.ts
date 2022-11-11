@@ -11,12 +11,9 @@ const base_url = environment.base_url;
 export class ModalImagenService {
 
   private _ocultarModal: boolean = true;
-  public tipo: String | undefined;
-  public id: String | undefined;
+  public tipo!: 'administradores' | 'medicos' | 'hospitales';
+  public id!: string;
   public img: String | undefined;
-
-  constructor() { }
-
 
 
   get ocultarModal() {
@@ -24,7 +21,7 @@ export class ModalImagenService {
   }
 
   abrirModal(
-    tipo: 'administradores' | 'medicos' | 'hospitales' | 'pacientes',
+    tipo: 'administradores' | 'medicos' | 'hospitales',
     id: string,
     img: string = 'no-img'
   ) {

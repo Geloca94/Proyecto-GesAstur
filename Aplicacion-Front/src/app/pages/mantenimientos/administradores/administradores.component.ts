@@ -120,7 +120,10 @@ export class AdministradoresComponent implements OnInit {
 
   abrirModal(administrador: Administrador) {
     console.log(administrador)
-    this.modalImagenService.abrirModal('administradores', administrador.uid, administrador.img);
+    if (administrador.uid) {
+      this.modalImagenService.abrirModal('administradores', administrador.uid, administrador.img);
+    }
+
   }
 
 }
