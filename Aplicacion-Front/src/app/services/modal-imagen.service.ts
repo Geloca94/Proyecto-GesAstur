@@ -13,7 +13,7 @@ export class ModalImagenService {
   private _ocultarModal: boolean = true;
   public tipo!: 'administradores' | 'medicos' | 'hospitales';
   public id!: string;
-  public img: String | undefined;
+  public img: string | undefined;
 
 
   get ocultarModal() {

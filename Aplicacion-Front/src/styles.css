@@ -24,6 +24,10 @@
     border-radius: 100%;
 }
 
+.avatarHospital {
+    width: 150px;
+}
+
 .centrar {
 
     text-align: center;

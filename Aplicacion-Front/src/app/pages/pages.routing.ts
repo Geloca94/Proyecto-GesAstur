@@ -13,6 +13,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 
 //Mantenimientos
 import { AdministradoresComponent } from './mantenimientos/administradores/administradores.component';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 
 //ng-router tab y haces un sniped
 
@@ -32,6 +34,8 @@ const routes: Routes = [
 
             //Mantenimientos
             { path: 'administradores', component: AdministradoresComponent, data: { titulo: 'Administradores' } },
+            { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Hospitales' } },
+            { path: 'medicos', component: MedicosComponent, data: { titulo: 'Medicos' } },
         ]
     },
 ];

@@ -72,7 +72,7 @@ export class AdministradoresComponent implements OnInit {
     this.busquedasService.buscar('administradores', termino)
       .subscribe(resp => {
 
-        this.administradores = resp;
+        this.administradores = resp as Administrador[];
       });
     return
   }
@@ -119,7 +119,6 @@ export class AdministradoresComponent implements OnInit {
   }
 
   abrirModal(administrador: Administrador) {
-    console.log(administrador)
     if (administrador.uid) {
       this.modalImagenService.abrirModal('administradores', administrador.uid, administrador.img);
     }
