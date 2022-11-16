@@ -35,8 +35,7 @@ const MedicoSchema = Schema({
     },
     role: {
         type: String,
-        required: true,
-        default: '2',
+        default: 'medico',
     }
 
 });

@@ -23,6 +23,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { AdministradoresComponent } from './mantenimientos/administradores/administradores.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 
 
 
@@ -40,6 +41,7 @@ import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
     AdministradoresComponent,
     HospitalesComponent,
     MedicosComponent,
+    MedicoComponent,
   ],
   exports: [
     DashboardComponent,

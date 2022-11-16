@@ -9,12 +9,14 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { AuthGuard } from '../guards/auth.guard';
-import { PerfilComponent } from './perfil/perfil.component';
+
 
 //Mantenimientos
 import { AdministradoresComponent } from './mantenimientos/administradores/administradores.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { PerfilComponent } from './perfil/perfil.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
+import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 
 //ng-router tab y haces un sniped
 
@@ -36,6 +38,7 @@ const routes: Routes = [
             { path: 'administradores', component: AdministradoresComponent, data: { titulo: 'Administradores' } },
             { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Hospitales' } },
             { path: 'medicos', component: MedicosComponent, data: { titulo: 'Medicos' } },
+            { path: 'medicos/:id', component: MedicoComponent, data: { titulo: 'Medicos' } },
         ]
     },
 ];

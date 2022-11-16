@@ -13,8 +13,11 @@ export class ImagenPipe implements PipeTransform {
 
   transform(img: string, tipo: 'administradores' | 'medicos' | 'hospitales'): string {
 
-    if (img) {
-      return `${base_url}/upload/hospitales/${img}`
+    if (!img) {
+      return `${base_url}/upload/administradores/no-image`
+    }
+    else if (img) {
+      return `${base_url}/upload/${tipo}/${img}`
     }
     return `${base_url}/upload/administradores/no-image`
 
