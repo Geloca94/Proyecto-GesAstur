@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Medico } from 'src/app/models/medico.model';
+import { BusquedasService } from 'src/app/services/busquedas.service';
 import { MedicoService } from 'src/app/services/medico.service';
 import { ModalImagenService } from 'src/app/services/modal-imagen.service';
 import Swal from 'sweetalert2';
@@ -20,9 +21,11 @@ export class MedicosComponent implements OnInit {
   // Bandera para saber si cargo o no 
   public cargando: boolean = true;
 
+
   constructor(
     private medicoService: MedicoService,
     private modalImagenService: ModalImagenService,
+    private busquedasService: BusquedasService
 
 
   ) { }
@@ -39,8 +42,22 @@ export class MedicosComponent implements OnInit {
       .subscribe(medicos => {
         this.cargando = false;
         this.medicos = medicos;
-        console.log(medicos);
       })
+  }
+  buscar(termino: string) {
+
+    // Si no se escribe nada se vuelve al inicio de la lista
+    if (termino.length === 0) {
+      return this.cargarMedicos();
+    }
+
+    //Introduces el tipo y luego el termino que quieres buscar
+    this.busquedasService.buscar('medicos', termino)
+      .subscribe(resp => {
+
+        this.medicos = resp as Medico[];
+      });
+    return
   }
 
   abrirModal(medico: Medico) {

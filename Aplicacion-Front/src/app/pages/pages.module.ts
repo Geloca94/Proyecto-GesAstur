@@ -50,6 +50,7 @@ import { MedicoComponent } from './mantenimientos/medicos/medico.component';
     PagesComponent,
     AccountSettingsComponent,
     PromesasComponent,
+    MedicoComponent,
     //PerfilComponent
   ],
   imports: [
