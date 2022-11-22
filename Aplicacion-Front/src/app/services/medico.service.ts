@@ -5,7 +5,7 @@ import { map } from 'rxjs';
 
 
 import { environment } from 'src/environments/environment';
-import { Medico, MedicosInterface } from '../models/medico.model';
+import { Medico, MedicosInterface, MedicoInterface } from '../models/medico.model';
 
 const base_url = environment.base_url
 
@@ -38,7 +38,17 @@ export class MedicoService {
 
   }
 
-  crearMedico(medico: { nombre: string, hospital: string }) {
+  obtenerMedicoPorId(id: string) {
+
+    const url = `${base_url}/medicos/${id}`;
+    return this.http.get<MedicoInterface>(url, this.headers)
+      .pipe(
+        map((resp: MedicoInterface) => resp.medico)
+      );
+  }
+
+
+  crearMedico(medico: { nombre: string, email: string, hospital: string }) {
 
     const url = `${base_url}/medicos`;
     return this.http.post(url, medico, this.headers);

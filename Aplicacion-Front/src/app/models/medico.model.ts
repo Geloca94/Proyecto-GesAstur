@@ -19,11 +19,20 @@ export interface MedicosInterface {
 
 }
 
+export interface MedicoInterface {
+
+    ok: boolean;
+    medico: Medico;
+    uid: string;
+
+}
+
 export class Medico {
 
     constructor(
         public nombre: string,
         public img: string,
+        public email: string,
         public _id: string,
         public usuario?: _MedicoUser,
         public hospital?: Hospital

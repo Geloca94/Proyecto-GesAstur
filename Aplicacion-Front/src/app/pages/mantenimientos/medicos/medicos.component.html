@@ -49,6 +49,7 @@
                             <tr>
                                 <th class="w100">Imagen del Medico</th>
                                 <th>Nombre</th>
+                                <th>Email</th>
                                 <th class="w100 text-nowrap">Acciones</th>
                             </tr>
                         </thead>
@@ -59,6 +60,7 @@
                                         class="avatarMedico" (click)="abrirModal(medico)">
                                 </td>
                                 <td>{{medico.nombre}}</td>
+                                <td>{{medico.email}}</td>
 
                                 <td class="text-nowrap">
                                     <a [routerLink]="['/dashboard/medico', medico._id]" data-toggle="tooltip"

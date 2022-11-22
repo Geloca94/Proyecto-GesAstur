@@ -16,6 +16,7 @@ export interface HospitalesInterface {
     hospitales: Hospital[];
     uid: string;
 
+
 }
 
 export class Hospital {
