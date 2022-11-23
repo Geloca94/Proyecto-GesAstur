@@ -31,29 +31,35 @@ export class MedicoComponent implements OnInit {
     private medicoService: MedicoService,
     private router: Router,
     private activateRoute: ActivatedRoute) {
-  }
-
-  ngOnInit(): void {
-
-    this.activateRoute.params
-      .subscribe(({ id }) => { this.cargarMedico(id) });
-
-
     this.medicoForm = this.fb.group({
       nombre: ['', Validators.required],
       email: ['', Validators.required],
-      hospital: ['', Validators.required],
+      hospital_id: ['', Validators.required],
 
     })
 
-    this.cargarHospitales();
-
     //observable para obtener el id del HOSPITAL
-    this.medicoForm.get('hospital').valueChanges
-      .subscribe((hospitalId: any) => {
-        this.hospitalSeleccionado = this.hospitales.find(h => h._id === hospitalId);
+    this.medicoForm.valueChanges
+      .subscribe((value: any) => {
+        console.log('value changes', value);
+        this.hospitalSeleccionado = this.hospitales.find(hospital =>
+          hospital._id === value.hospital_id);
 
+        this.medicoSeleccionado = {
+          ...this.medicoSeleccionado,
+          nombre: value.nombre,
+          email: value.email,
+          hospital: this.hospitalSeleccionado
+        }
+        console.log('After value changes', this.medicoSeleccionado, this.hospitalSeleccionado)
       })
+  }
+
+  ngOnInit(): void {
+    this.cargarHospitales();
+    this.activateRoute.params
+      .subscribe(({ id }) => { this.cargarMedico(id) });
+
   }
 
 
@@ -71,42 +77,48 @@ export class MedicoComponent implements OnInit {
   cargarMedico(id: string) {
     if (id === 'nuevo') {
       return;
+    } else {
+
+      this.medicoService.obtenerMedicoPorId(id)
+        .subscribe(medico => {
+
+          //Regla de validacion
+          if (!medico) {
+            this.router.navigateByUrl(`/dashboard/medicos/`)
+          }
+
+          this.medicoSeleccionado = medico;
+          const medicoFormValue = {
+            nombre: medico.nombre,
+            email: medico.email,
+            hospital_id: medico.hospital._id
+          }
+          this.medicoForm.setValue(medicoFormValue);
+        });
     }
-
-    this.medicoService.obtenerMedicoPorId(id)
-      .subscribe(medico => {
-
-        //Regla de validacion
-        if (!medico) {
-          this.router.navigateByUrl(`/dashboard/medicos/`)
-        }
-
-        console.log(medico)
-        const hospital = medico.hospital?._id;
-        console.log(hospital)
-
-        const { nombre, email } = medico;
-        console.log(nombre, email, hospital)
-        this.medicoSeleccionado = medico;
-        this.medicoForm.setValue({ nombre, email, hospital });
-      });
-
   }
 
   guardarMedico() {
 
-    const { nombre } = this.medicoForm.value
 
-    if (this.medicoSeleccionado) {
+    this.hospitalSeleccionado = this.hospitales.find(hospital => this.medicoForm.value.hospital_id === hospital._id);
+
+    console.log('Hosp sel', this.hospitalSeleccionado);
+
+    if (this.medicoSeleccionado && this.hospitalSeleccionado) {
+
       //actualizar
-      const data = {
-        ...this.medicoForm,
-        _id: this.medicoSeleccionado.hospital
+      const medicoToSave = {
+        _id: this.medicoSeleccionado._id,
+        email: this.medicoForm.value.email,
+        nombre: this.medicoForm.value.nombre,
+        hospital: this.hospitalSeleccionado._id
       }
-      this.medicoService.actualizarMedico(data)
+      console.log('Medic sel', medicoToSave);
+      this.medicoService.actualizarMedico(medicoToSave)
         .subscribe(resp => {
           console.log(resp);
-          Swal.fire('Actualizado', `${nombre} actualizado correctamente`, 'success');
+          Swal.fire('Actualizado', `${medicoToSave.nombre} actualizado correctamente`, 'success');
 
         })
 

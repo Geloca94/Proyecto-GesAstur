@@ -35,7 +35,7 @@ export class Medico {
         public email: string,
         public _id: string,
         public usuario?: _MedicoUser,
-        public hospital?: Hospital
+        public hospital?: Hospital | any
 
     ) { }
 }

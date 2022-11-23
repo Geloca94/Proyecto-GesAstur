@@ -39,6 +39,7 @@ const routes: Routes = [
             { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Hospitales' } },
             { path: 'medicos', component: MedicosComponent, data: { titulo: 'Medicos' } },
             { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Editar Medico' } },
+
         ]
     },
 ];

@@ -49,7 +49,7 @@
                 <div class="col-sm-9">
                     <div class="input-group">
                         <div class="input-group-addon"><i class="fa fa-building-o"></i></div>
-                        <select class="form-control" formControlName="hospital">
+                        <select class="form-control" formControlName="hospital_id">
                             <option value="">Seleccione Hospital</option>
                             <option *ngFor="let hospital of hospitales" [value]="hospital._id">{{hospital.nombre}}
                             </option>
