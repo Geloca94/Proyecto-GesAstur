@@ -17,6 +17,7 @@ import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.comp
 import { PerfilComponent } from './perfil/perfil.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
+import { CrearMedicoComponent } from './mantenimientos/medicos/crear-medico.component';
 
 //ng-router tab y haces un sniped
 
@@ -39,7 +40,7 @@ const routes: Routes = [
             { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Hospitales' } },
             { path: 'medicos', component: MedicosComponent, data: { titulo: 'Medicos' } },
             { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Editar Medico' } },
-
+            { path: 'crearMedico', component: CrearMedicoComponent, data: { titulo: 'Registrar Medico' } },
         ]
     },
 ];

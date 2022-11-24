@@ -47,7 +47,7 @@ export class MedicoService {
       );
   }
 
-
+  //Instrucion para crear el medico en la base datos. 
   crearMedico(medico: { nombre: string, email: string, hospital: string }) {
 
     const url = `${base_url}/medicos`;
@@ -55,7 +55,7 @@ export class MedicoService {
 
 
   }
-
+  //Instruccion para actualizar el medico en la base de datos (enlaza el front con el back)
   actualizarMedico(medico: any) {
 
     const url = `${base_url}/medicos/${medico._id}`;

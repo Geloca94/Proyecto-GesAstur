@@ -24,6 +24,7 @@ import { AdministradoresComponent } from './mantenimientos/administradores/admin
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
+import { CrearMedicoComponent } from './mantenimientos/medicos/crear-medico.component';
 
 
 
@@ -42,6 +43,7 @@ import { MedicoComponent } from './mantenimientos/medicos/medico.component';
     HospitalesComponent,
     MedicosComponent,
     MedicoComponent,
+    CrearMedicoComponent,
   ],
   exports: [
     DashboardComponent,
@@ -51,6 +53,7 @@ import { MedicoComponent } from './mantenimientos/medicos/medico.component';
     AccountSettingsComponent,
     PromesasComponent,
     MedicoComponent,
+    CrearMedicoComponent
     //PerfilComponent
   ],
   imports: [

@@ -99,6 +99,7 @@ export class HospitalesComponent implements OnInit {
     }
   }
 
+  //Modal para ver la imagen antes de subirla cuando la seleccionas 
   abrirModal(hospital: Hospital) {
 
 

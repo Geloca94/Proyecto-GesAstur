@@ -119,21 +119,12 @@ export class MedicoComponent implements OnInit {
         .subscribe(resp => {
           console.log(resp);
           Swal.fire('Actualizado', `${medicoToSave.nombre} actualizado correctamente`, 'success');
+          //para volver a la lista de los medicos
+          this.router.navigateByUrl(`/dashboard/medicos`);
 
         })
 
-    } else {
-      //crear
-      const { nombre } = this.medicoForm.value
-      console.log(this.medicoForm.value)
-      this.medicoService.crearMedico(this.medicoForm.value)
-        .subscribe((resp: any) => {
-          console.log(resp);
-          Swal.fire('Creado', `${nombre} registrado correctamente`, 'success');
-          this.router.navigateByUrl(`/dashboard/medico/${resp.medico._id}`)
-        })
     }
-
 
   }
 }
