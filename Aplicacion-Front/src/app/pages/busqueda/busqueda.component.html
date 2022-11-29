@@ -1,0 +1,121 @@
+<div class="card">
+    <div class="card-body">
+        <div class="card-title text-center">
+
+            <h3>Administradores</h3>
+
+        </div>
+
+        <div class="alert alert-info" *ngIf="administradores.length === 0">
+            <h4 class="alert-heading">No hay Administradores</h4>
+            <p class="mb-0">No se encuentra el administrador que buscas</p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let administrador of administradores">
+                        <td><img [src]="administrador.img| imagen: 'administradores'  " class="avatarMedico">
+                        </td>
+                        <td>{{administrador.nombre}}</td>
+                        <td>{{administrador.email}}</td>
+                        <td>{{administrador.role}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title text-center">
+
+            <h3>Medicos</h3>
+
+        </div>
+
+        <div class="alert alert-info" *ngIf="medicos.length === 0">
+            <h4 class="alert-heading">No hay Medicos</h4>
+            <p class="mb-0">No se encuentra el medico que buscas</p>
+        </div>
+
+        <div class="table-responsive" *ngIf="medicos.length > 0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let medico of medicos">
+                        <td><img [src]="medico.img | imagen: 'medicos' " class="avatarMedico"></td>
+                        <td>{{medico.nombre}}</td>
+                        <td>{{medico.email}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title text-center">
+
+            <h3>Hospitales</h3>
+
+        </div>
+
+        <div class="alert alert-info" *ngIf="hospitales.length === 0">
+            <h4 class="alert-heading">No hay Hospitales</h4>
+            <p class="mb-0">No se encuentra el Hospital que buscas</p>
+        </div>
+
+        <div class="table-responsive" *ngIf="hospitales.length > 0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nombre</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let hospital of hospitales">
+                        <td><img [src]="hospital.img | imagen: 'hospitales' " class="avatarMedico"></td>
+                        <td>{{hospital.nombre}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+</div>

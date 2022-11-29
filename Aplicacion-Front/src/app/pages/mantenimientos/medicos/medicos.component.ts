@@ -15,7 +15,7 @@ import Swal from 'sweetalert2';
 export class MedicosComponent implements OnInit {
 
 
-  // Para mostrar los hospitales
+  // Para mostrar los medicos
   public medicos: Medico[] = [];
 
   // Bandera para saber si cargo o no 

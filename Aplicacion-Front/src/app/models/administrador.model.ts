@@ -7,18 +7,14 @@ export class Administrador {
     constructor(
         public nombre: string,
         public email: string,
+        public img: string,
         public password?: string,
-        public img?: string,
         public role?: string,
         public uid?: string,
         //public google?: boolean,
     ) { }
 
     get imagenUrl() {
-        //upload/administradores/no-image
-        /*if (this.img.includes('https')){
-            return this.img;
-        }*/
 
         if (this.img) {
             return `${base_url}/upload/administradores/${this.img}`
