@@ -12,6 +12,7 @@ import { AuthGuard } from '../guards/auth.guard';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
+
 //Mantenimientos
 import { AdministradoresComponent } from './mantenimientos/administradores/administradores.component';
 import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
@@ -19,6 +20,9 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 import { CrearMedicoComponent } from './mantenimientos/medicos/crear-medico.component';
+import { IncidenciaComponent } from './incidencia/incidencia.component';
+import { CrearIncidenciaComponent } from './incidencia/crear-incidencia.component';
+import { PoliticaDatosComponent } from './politica-datos/politica-datos.component';
 
 //ng-router tab y haces un sniped
 
@@ -36,6 +40,9 @@ const routes: Routes = [
             { path: 'rxjs', component: RxjsComponent, data: { titulo: 'Rxjs' } },
             { path: 'perfil', component: PerfilComponent, data: { titulo: 'Perfil de Usuario' } },
             { path: 'buscar/:termino', component: BusquedaComponent, data: { titulo: 'Busquedas' } },
+            { path: 'incidencias', component: IncidenciaComponent, data: { titulo: 'Incidencias' } },
+            { path: 'crearIncidencia', component: CrearIncidenciaComponent, data: { titulo: 'Registrar Incidencias' } },
+            { path: 'politica', component: PoliticaDatosComponent, data: { titulo: 'Politica de Datos' } },
 
             //Mantenimientos
             { path: 'administradores', component: AdministradoresComponent, data: { titulo: 'Administradores' } },

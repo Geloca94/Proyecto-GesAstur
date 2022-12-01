@@ -19,6 +19,35 @@ const borrarImagen = (path) => {
 const actualizarImagen = async (tipo, id, nombreArchivo) => {
 
     switch (tipo) {
+
+        case 'administradores':
+
+            const administrador = await Administrador.findById(id);
+
+            //console.log(administrador)
+            if (!administrador) {
+                console.log('No se encontro el Administrador')
+                return false;
+            }
+            //EL PATH VIEJO 
+            const pathViejoAdministrador = `./uploads/administradores/${administrador.img}`;
+
+            //console.log(pathViejoAdministrador);
+
+            if (fs.existsSync(pathViejoAdministrador)) {
+
+                //fs.unlinkSync(pathViejoAdministrador);
+            }
+
+            administrador.img = nombreArchivo;
+
+            //console.log(administrador.img);
+            await administrador.save();
+            return true;
+
+            break;
+
+
         case 'medicos':
             const medico = await Medico.findById(id);
             if (!medico) {
@@ -52,23 +81,7 @@ const actualizarImagen = async (tipo, id, nombreArchivo) => {
             return true;
 
             break;
-        case 'administradores':
 
-            const administrador = await Administrador.findById(id);
-            if (!administrador) {
-                console.log('No se encontro el Administrador')
-                return false;
-            }
-
-            //EL PATH VIEJO 
-            const pathViejoAdministrador = `./uploads/hospitales/${administrador.img}`;
-            borrarImagen(pathViejoAdministrador);
-
-            administrador.img = nombreArchivo;
-            await administrador.save();
-            return true;
-
-            break;
     }
 
 }

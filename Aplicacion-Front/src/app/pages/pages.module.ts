@@ -26,6 +26,9 @@ import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 import { MedicoComponent } from './mantenimientos/medicos/medico.component';
 import { CrearMedicoComponent } from './mantenimientos/medicos/crear-medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { IncidenciaComponent } from './incidencia/incidencia.component';
+import { CrearIncidenciaComponent } from './incidencia/crear-incidencia.component';
+import { PoliticaDatosComponent } from './politica-datos/politica-datos.component';
 
 
 
@@ -46,6 +49,9 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     MedicoComponent,
     CrearMedicoComponent,
     BusquedaComponent,
+    IncidenciaComponent,
+    CrearIncidenciaComponent,
+    PoliticaDatosComponent,
   ],
   exports: [
     DashboardComponent,
@@ -55,7 +61,9 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
     AccountSettingsComponent,
     PromesasComponent,
     MedicoComponent,
-    CrearMedicoComponent
+    CrearMedicoComponent,
+    IncidenciaComponent,
+    CrearIncidenciaComponent
     //PerfilComponent
   ],
   imports: [

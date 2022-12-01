@@ -114,7 +114,7 @@ export class AdministradoresComponent implements OnInit {
   cambiarRol(administrador: Administrador) {
     this.administradorService.guardarAdministradorRol(administrador)
       .subscribe(resp => {
-        console.log(resp);
+        //console.log(resp);
       })
   }
 

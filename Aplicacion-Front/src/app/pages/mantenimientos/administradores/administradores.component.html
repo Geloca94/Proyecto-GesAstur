@@ -35,6 +35,7 @@
                         <thead>
                             <tr>
                                 <th class="w100">Imagen</th>
+                                <th>imagen2</th>
                                 <th>Correo</th>
                                 <th>Nombre</th>
                                 <th class="w200">Rol</th>
@@ -44,19 +45,13 @@
                         <tbody>
                             <tr *ngFor="let administrador of administradores">
                                 <td>
-                                    <img [src]="administrador.imagenUrl" alt="Imagen de Personal" class="avatar cursor"
+                                    <img [src]="administrador.img" alt="Imagen de Personal" class="avatar cursor"
                                         (click)="abrirModal(administrador)">
                                 </td>
+                                <td>{{administrador.img}}</td>
                                 <td class="">{{administrador.email}}</td>
                                 <td>{{administrador.nombre}}</td>
-                                <td>
-                                    <select class="form-control" [(ngModel)]="administrador.role"
-                                        (change)="cambiarRol(administrador)">
-                                        <option value="Administrador">Administrador</option>
-                                        <option value="Moderador">Moderador</option>
-                                        <option value="Usuario">Usuario</option>
-                                    </select>
-                                </td>
+                                <td>{{administrador.role}}</td>
 
                                 <td class="text-nowrap text-center">
                                     <a data-toggle="tooltip" data-original-title="Borrar"

@@ -10,7 +10,7 @@ interface _MedicoUser {
     img: string;
 
 }
-
+//Para PODER LISTAR LOS MEDICOS
 export interface MedicosInterface {
 
     ok: boolean;
@@ -18,7 +18,7 @@ export interface MedicosInterface {
     uid: string;
 
 }
-
+//Para buscar el medico
 export interface MedicoInterface {
 
     ok: boolean;

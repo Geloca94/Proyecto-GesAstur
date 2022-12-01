@@ -54,3 +54,9 @@
     height: 100%;
     z-index: 9999;
 }
+
+.politicaPrivacidadImagen {
+
+    background-image: url("../../uploads/politicaPrivacidadImagen.jpg");
+
+}

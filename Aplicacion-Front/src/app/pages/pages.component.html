@@ -29,11 +29,20 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer">
-            © {{year}} GesAstur Todos los Derechos Reservados
+            <div class="row">
+                <div class="col text-left ">© {{year}} GesAstur Todos los Derechos Reservados</div>
+                <div class="col-4">
+                    <a routerLink="./politica" class="text-center">Ley de Proteccion de datos</a>
+                </div>
+                <div class="col text-right"><a routerLink="/dashboard/crearIncidencia"
+                        class="btn btn-warning mdi mdi-alert-outline">Reportar una Incidencia</a>
+                </div>
+            </div>
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->
         <!-- ============================================================== -->
+
     </div>
 
 </div>
