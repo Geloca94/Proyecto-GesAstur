@@ -10,6 +10,20 @@ const PacienteSchema = Schema({
         require: true
 
     },
+    apellido: {
+        type: String,
+        require: true
+    },
+    descripcion: {
+        type: String
+    },
+    edad: {
+        type: Number,
+    },
+    dolencia: {
+        type: String,
+    },
+
     medico: {
         type: Schema.Types.ObjectId,
         ref: 'Medico',

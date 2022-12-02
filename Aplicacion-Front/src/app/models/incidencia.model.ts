@@ -25,6 +25,9 @@ export class Incidencia {
         public nombre: string,
         public tipo: string,
         public descripcion: string,
+        public estado: string,
+        public _id: string,
+        public fecha: Date,
     ) { }
 
 }

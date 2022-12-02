@@ -5,7 +5,8 @@ const { response } = require('express');
 const Administrador = require('../models/administrador');
 const Medico = require('../models/medico');
 const Hospital = require('../models/hospital');
-const hospital = require('../models/hospital');
+const Paciente = require('../models/paciente');
+const Incidencia = require('../models/incidencia');
 // getTodo
 
 
@@ -16,10 +17,12 @@ const getTodo = async (req, res = response) => {
 
 
 
-    const [administradores, medicos, hospitales] = await Promise.all([
+    const [administradores, medicos, hospitales, pacientes, incidencias] = await Promise.all([
         Administrador.find({ nombre: regex }),
         Medico.find({ nombre: regex }),
-        Hospital.find({ nombre: regex })
+        Hospital.find({ nombre: regex }),
+        Paciente.find({ nombre: regex }),
+        Incidencia.find({ nombre: regex })
 
     ])
 
@@ -27,7 +30,9 @@ const getTodo = async (req, res = response) => {
         ok: true,
         administradores,
         medicos,
-        hospitales
+        hospitales,
+        pacientes,
+        incidencias
     })
 
 }
@@ -54,6 +59,19 @@ const getDocumentosColeccion = async (req, res = response) => {
         case 'administradores':
 
             data = await Administrador.find({ nombre: regex });
+
+            break;
+        case 'pacientes':
+
+            data = await Paciente.find({ nombre: regex })
+                .populate('medico', 'nombre')
+                .populate('hospital', 'nombre');
+            break;
+
+        case 'incidencias':
+
+            data = await Incidencia.find({ nombre: regex })
+                .populate('administrador', 'nombre');
 
             break;
 

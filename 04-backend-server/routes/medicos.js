@@ -14,12 +14,16 @@ const {
     crearMedico,
     actualizarMedico,
     borrarMedico,
-    crearPaciente,
     getPaciente,
-    getMedicoById
+    crearPaciente,
+    borrarPaciente,
+    getMedicoById,
+    actualizarPaciente,
 } = require('../controllers/medicos')
 
 const router = Router();
+
+//EL ORDEN AFECTA A LAS RUTAS!!!
 
 router.get('/', validarJWT, getMedico);
 
@@ -49,10 +53,6 @@ router.delete('/:id',
     borrarMedico
 );
 
-router.get('/:id',
-    validarJWT,
-    getMedicoById
-);
 
 router.post('/registrarPaciente',
     [
@@ -62,8 +62,30 @@ router.post('/registrarPaciente',
     ],
     crearPaciente
 );
-router.get('/listaPaciente', getPaciente
+
+router.get('/listaPaciente', validarJWT, getPaciente
 );
 
+router.put('/actualizarPaciente/:id',
+    [
+        validarJWT,
+        check('nombre', 'El nombre del Paciente es necesario').not().isEmpty(),
+        check('medico', 'El medico Id debe ser valido').isMongoId(),
+        check('hospital', 'El hospital id debe ser valido').isMongoId(),
+        validarCampos
+    ],
+    actualizarPaciente
+);
+
+router.delete('/listaPaciente/:id',
+    validarJWT,
+    borrarPaciente
+
+);
+
+router.get('/:id',
+    validarJWT,
+    getMedicoById
+);
 
 module.exports = router;

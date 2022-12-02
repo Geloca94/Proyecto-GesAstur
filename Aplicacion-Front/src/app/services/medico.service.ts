@@ -63,6 +63,7 @@ export class MedicoService {
 
   }
 
+
   eliminarMedico(_id: string) {
 
     const url = `${base_url}/medicos/${_id}`;

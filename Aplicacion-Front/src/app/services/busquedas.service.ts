@@ -4,7 +4,9 @@ import { map } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Administrador } from '../models/administrador.model';
 import { Hospital } from '../models/hospital.model';
+import { Incidencia } from '../models/incidencia.model';
 import { Medico } from '../models/medico.model';
+import { Paciente } from '../models/paciente.model';
 
 const base_url = environment.base_url;
 
@@ -50,6 +52,18 @@ export class BusquedasService {
     return resultados;
 
   }
+
+  private transformarPacientes(resultados: any[]): Paciente[] {
+
+    return resultados;
+
+  }
+
+  private transformarIncidencias(resultados: any[]): Incidencia[] {
+
+    return resultados;
+
+  }
   busquedaGlobal(termino: string) {
 
     const url = `${base_url}/todo//${termino}`;
@@ -58,7 +72,7 @@ export class BusquedasService {
   }
 
   buscar(
-    tipo: 'administradores' | 'medicos' | 'hospitales' | 'pacientes' | 'citas',
+    tipo: 'administradores' | 'medicos' | 'hospitales' | 'pacientes' | 'citas' | 'incidencias',
     termino: string = ''
 
   ) {
@@ -78,6 +92,12 @@ export class BusquedasService {
 
             case 'medicos':
               return this.transformarMedicos(resp.resultados)
+
+            case 'pacientes':
+              return this.transformarPacientes(resp.resultados)
+
+            case 'incidencias':
+              return this.transformarIncidencias(resp.resultados)
 
             default:
               return [];

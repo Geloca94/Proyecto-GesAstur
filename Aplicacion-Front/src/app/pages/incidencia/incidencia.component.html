@@ -1,1 +1,59 @@
-<p>incidencia works!</p>
+<div class="row animated fadeIn fast">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <input type="text" class="form-control" placeholder="Buscar Incidencia..." #txtTermino
+                    (keyup)="buscar(txtTermino.value)">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="table-responsive m-t-40">
+            <div id="myTable_wrapper" class="dataTables_wrapper no-footer">
+                <table id="myTable" class="table table-bordered table-striped dataTable no-footer" role="grid"
+                    aria-describedby="myTable_info">
+                    <thead>
+                        <tr role="row">
+                            <th class="" tabindex="0" aria-controls="myTable"
+                                aria-label="Name: activate to sort column ascending" style="width: 144.887px;">Nombre
+                            </th>
+                            <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                                aria-label="Descripcion: activate to sort column ascending" style="width: 107.613px;">
+                                Tipo</th>
+                            <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                                aria-label="Nombre: activate to sort column ascending" style="width: 227.725px;">
+                                Descripcion</th>
+                            <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                                aria-label="Estado: activate to sort column ascending" style="width: 51.625px;">Fecha
+                            </th>
+                            <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                                aria-label="Estado: activate to sort column ascending" style="width: 51.625px;">Estado
+                            </th>
+                            <th class="" tabindex="0" aria-controls="myTable" rowspan="1" colspan="1"
+                                aria-label="Accion: activate to sort column ascending" style="width: 98.675px;">Accion
+                            </th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let incidencias of incidencias">
+                            <td>{{incidencias.nombre}}</td>
+                            <td>{{incidencias.tipo | titlecase}}</td>
+                            <td>{{incidencias.descripcion | titlecase}}</td>
+                            <td>{{incidencias.fecha |date}}</td>
+                            <td>{{incidencias.estado}}</td>
+                            <td class="text-nowrap">
+                                <a class="cursor" data-toggle="tooltip" data-original-title="Borrar"
+                                    (click)="eliminarIncidencia(incidencias)"> <i class="fa fa-close text-danger"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

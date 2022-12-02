@@ -23,6 +23,8 @@ import { CrearMedicoComponent } from './mantenimientos/medicos/crear-medico.comp
 import { IncidenciaComponent } from './incidencia/incidencia.component';
 import { CrearIncidenciaComponent } from './incidencia/crear-incidencia.component';
 import { PoliticaDatosComponent } from './politica-datos/politica-datos.component';
+import { RegistrarPacientesComponent } from './mantenimientos/pacientes/registrar-pacientes.component';
+import { PacientesComponent } from './mantenimientos/pacientes/pacientes.component';
 
 //ng-router tab y haces un sniped
 
@@ -50,6 +52,8 @@ const routes: Routes = [
             { path: 'medicos', component: MedicosComponent, data: { titulo: 'Medicos' } },
             { path: 'medico/:id', component: MedicoComponent, data: { titulo: 'Editar Medico' } },
             { path: 'crearMedico', component: CrearMedicoComponent, data: { titulo: 'Registrar Medico' } },
+            { path: 'medicos/registrarPaciente', component: RegistrarPacientesComponent, data: { titulo: 'Registrar Paciente' } },
+            { path: 'medicos/listaPaciente', component: PacientesComponent, data: { titulo: 'Pacientes' } },
         ]
     },
 ];

@@ -84,7 +84,7 @@ export class MedicosComponent implements OnInit {
           .subscribe(resp => {
             this.cargarMedicos();
             Swal.fire(
-              'Usuario borrado',
+              'Medico borrado',
               `${medico.nombre} fue eliminado Correctamente`,
               'success'
             );

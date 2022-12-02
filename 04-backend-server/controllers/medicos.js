@@ -146,13 +146,83 @@ const crearPaciente = async (req, res = response) => {
 const getPaciente = async (req, res = response) => {
     const pacientes = await Paciente.find()
         .populate('medico', 'nombre')
-        .populate('hospital', 'nombre img');
+        .populate('hospital', 'nombre');
 
     res.json({
         ok: true,
         pacientes,
 
     })
+}
+
+const actualizarPaciente = async (req, res = response) => {
+    const id = req.params.id;
+    const uid = req.uid;
+
+    try {
+
+        const paciente = await Paciente.findById(id);
+
+        if (!paciente) {
+            return res.status(400).json({
+                ok: true,
+                msg: 'Paciente no encontrado',
+            });
+        }
+
+        const cambiosPaciente = {
+            ...req.body,
+            paciente: uid
+        }
+
+        const pacienteActualizado = await Paciente.findByIdAndUpdate(id, cambiosPaciente, { new: true })
+
+
+        res.json({
+            ok: true,
+            paciente: pacienteActualizado
+        })
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        })
+    }
+}
+
+const borrarPaciente = async (req, res = response) => {
+    const id = req.params.id
+    try {
+
+        const paciente = await Paciente.findById(id);
+
+        if (!paciente) {
+            return res.status(400).json({
+                ok: true,
+                msg: 'Paciente no encontrado',
+            });
+        }
+
+        await Paciente.findByIdAndDelete(id)
+
+
+
+        res.json({
+            ok: true,
+            msg: 'Paciente Eliminado'
+        })
+    } catch (error) {
+
+        console.log(error);
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        })
+    }
 }
 
 const darCita = async (req, res = response) => {
@@ -227,6 +297,9 @@ module.exports = {
     borrarMedico,
     crearPaciente,
     getPaciente,
-    getMedicoById
+    actualizarPaciente,
+    borrarPaciente,
+    darCita,
+    getMedicoById,
 
 }

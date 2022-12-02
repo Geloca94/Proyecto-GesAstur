@@ -25,8 +25,7 @@ export class SidebarService {
         { titulo: 'Administradores', url: 'administradores' },
         { titulo: 'Hospitales', url: 'hospitales' },
         { titulo: 'Medicos', url: 'medicos' },
-        { titulo: 'Enfermeros', url: 'enfermeros' },
-        { titulo: 'Pacientes', url: 'pacientes' },
+        { titulo: 'Pacientes', url: 'medicos/registrarPaciente' },
 
       ]
     }

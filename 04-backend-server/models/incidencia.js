@@ -13,6 +13,14 @@ const IncidenciaSchema = Schema({
     descripcion: {
         type: String
     },
+    estado: {
+        type: String,
+        default: 'Abierta',
+    },
+    fecha: {
+        type: Date,
+        default: Date.now
+    },
 
     administrador: {
         required: true,

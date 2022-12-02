@@ -29,6 +29,9 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
 import { IncidenciaComponent } from './incidencia/incidencia.component';
 import { CrearIncidenciaComponent } from './incidencia/crear-incidencia.component';
 import { PoliticaDatosComponent } from './politica-datos/politica-datos.component';
+import { PacientesComponent } from './mantenimientos/pacientes/pacientes.component';
+import { RegistrarPacientesComponent } from './mantenimientos/pacientes/registrar-pacientes.component';
+import { ActualizarPacienteComponent } from './mantenimientos/pacientes/actualizar-paciente.component';
 
 
 
@@ -52,6 +55,9 @@ import { PoliticaDatosComponent } from './politica-datos/politica-datos.componen
     IncidenciaComponent,
     CrearIncidenciaComponent,
     PoliticaDatosComponent,
+    PacientesComponent,
+    RegistrarPacientesComponent,
+    ActualizarPacienteComponent,
   ],
   exports: [
     DashboardComponent,
@@ -63,7 +69,10 @@ import { PoliticaDatosComponent } from './politica-datos/politica-datos.componen
     MedicoComponent,
     CrearMedicoComponent,
     IncidenciaComponent,
-    CrearIncidenciaComponent
+    CrearIncidenciaComponent,
+    PacientesComponent,
+    RegistrarPacientesComponent,
+    ActualizarPacienteComponent,
     //PerfilComponent
   ],
   imports: [
