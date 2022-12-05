@@ -18,6 +18,7 @@ const {
     crearPaciente,
     borrarPaciente,
     getMedicoById,
+    getPacienteById,
     actualizarPaciente,
 } = require('../controllers/medicos')
 
@@ -69,9 +70,9 @@ router.get('/listaPaciente', validarJWT, getPaciente
 router.put('/actualizarPaciente/:id',
     [
         validarJWT,
-        check('nombre', 'El nombre del Paciente es necesario').not().isEmpty(),
-        check('medico', 'El medico Id debe ser valido').isMongoId(),
-        check('hospital', 'El hospital id debe ser valido').isMongoId(),
+        //check('nombre', 'El nombre del Paciente es necesario').not().isEmpty(),
+        //check('medico', 'El medico Id debe ser valido').isMongoId(),
+        //check('hospital', 'El hospital id debe ser valido').isMongoId(),
         validarCampos
     ],
     actualizarPaciente
@@ -87,5 +88,11 @@ router.get('/:id',
     validarJWT,
     getMedicoById
 );
+
+router.get('/paciente/:id',
+    validarJWT,
+    getPacienteById
+);
+
 
 module.exports = router;

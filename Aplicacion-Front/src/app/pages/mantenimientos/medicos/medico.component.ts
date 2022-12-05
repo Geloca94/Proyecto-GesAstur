@@ -31,6 +31,7 @@ export class MedicoComponent implements OnInit {
     private medicoService: MedicoService,
     private router: Router,
     private activateRoute: ActivatedRoute) {
+
     this.medicoForm = this.fb.group({
       nombre: ['', Validators.required],
       email: ['', Validators.required],
@@ -41,7 +42,7 @@ export class MedicoComponent implements OnInit {
     //observable para obtener el id del HOSPITAL
     this.medicoForm.valueChanges
       .subscribe((value: any) => {
-        console.log('value changes', value);
+        console.log('Valor', value);
         this.hospitalSeleccionado = this.hospitales.find(hospital =>
           hospital._id === value.hospital_id);
 
@@ -117,7 +118,7 @@ export class MedicoComponent implements OnInit {
       console.log('Medic sel', medicoToSave);
       this.medicoService.actualizarMedico(medicoToSave)
         .subscribe(resp => {
-          console.log(resp);
+          //console.log(resp);
           Swal.fire('Actualizado', `${medicoToSave.nombre} actualizado correctamente`, 'success');
           //para volver a la lista de los medicos
           this.router.navigateByUrl(`/dashboard/medicos`);

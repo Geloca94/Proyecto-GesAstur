@@ -1,1 +1,142 @@
-<p>actualizar-paciente works!</p>
+<div class="container">
+    <div class="justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-8">
+
+                        <h4 class="card-title">Actualizar Paciente</h4>
+                        <h6 class="card-subtitle">Rellene los campos correspondientes * es obligatorio</h6>
+
+                    </div>
+
+                    <div class="col">
+
+                        <div class="text-right">
+                            <a class="btn btn-primary" routerLink="/dashboard/medicos/listaPaciente">
+                                <i class="icon-people"> Volver</i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <form class="form-horizontal m-t-40" [formGroup]="pacienteForm" (submit)="guardarPaciente()">
+
+
+                    <div class="form-group row">
+                        <label for="nombre" class="col-sm-3">Nombre* <span class="help"> e.g.. "Jose
+                                Garcia"</span></label>
+
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="mdi mdi-account-card-details"></i></div>
+                                <input type="text" formControlName="nombre" class="form-control" id="uname"
+                                    placeholder="Nombre del Paciente">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="nombre" class="col-sm-3">Apellidos* <span class="help"> e.g.. "Garcia
+                                Guitierrez"</span></label>
+
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="mdi mdi-account-card-details"></i></div>
+                                <input type="text" formControlName="apellido" class="form-control" id="uname"
+                                    placeholder="Apellidos del Paciente">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="uname" class="control-label col-sm-3">Descripcion</label>
+
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <textarea class="textarea_editor form-control" rows="10" formControlName="descripcion"
+                                    placeholder="Descripcion del paciente"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="uname" class="col-sm-3 control-label">Edad del paciente*</label>
+
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="mdi mdi-calendar"></i></div>
+                                <input type="number" formControlName="edad" class="form-control" id="uname"
+                                    placeholder="Edad del Paciente">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="uname" class="col-sm-3 control-label">Dolencia del paciente*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="mdi mdi mdi-hospital "></i></div>
+                                <select class="form-control" formControlName="dolencia"
+                                    placeholder="Tipo de la dolencia">
+                                    <option value="">Seleccione el Tipo de Dolencia</option>
+                                    <option value="Herida Limpia">Herida Limpia</option>
+                                    <option value="Esguince">Esguince</option>
+                                    <option value="Infeccion Bacteriana">Infenccion Bacteriana</option>
+                                    <option value="Infeccion Virica">Infeccion Virica </option>
+                                    <option value="Rotura de Hueso">Rotura de Hueso</option>
+                                    <option value="Rotura de Musculo">Rotura de Musculo</option>
+                                    <option value="Rotura de Tendon">Rotura de Tendon</option>
+                                    <option value="Otros">Otros</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <label for="web1" class="col-sm-3 control-label">Medico que le atendio*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="mdi mdi-medical-bag"></i></div>
+                                <select class="form-control" formControlName="medico_id">
+                                    <option value="">Seleccione Medico</option>
+                                    <option *ngFor="let medico of medicos" [value]="medico._id">{{medico.nombre}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="web1" class="col-sm-3 control-label">Hospital de atencion*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="mdi mdi-hospital-building"></i></div>
+                                <select class="form-control" formControlName="hospital_id">
+                                    <option value="">Seleccione Hospital</option>
+                                    <option *ngFor="let hospital of hospitales" [value]="hospital._id">
+                                        {{hospital.nombre}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9 ">
+                            <button type="submit" [disabled]="pacienteForm.invalid"
+                                class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-save"> Guardar Cambios</i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

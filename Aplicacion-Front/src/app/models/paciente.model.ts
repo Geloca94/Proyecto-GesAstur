@@ -24,7 +24,7 @@ export interface PacientesInterface {
 export interface PacienteInterface {
 
     ok: boolean;
-    medico: Paciente;
+    paciente: Paciente;
     uid: string;
 
 }

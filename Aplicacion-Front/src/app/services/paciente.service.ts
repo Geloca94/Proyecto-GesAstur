@@ -59,4 +59,15 @@ export class PacienteService {
     return this.http.delete(url, this.headers);
 
   }
+
+  obtenerPacientesPorId(_id: string) {
+
+    const url = `${base_url}/medicos/paciente/${_id}`;
+    return this.http.get<PacienteInterface>(url, this.headers)
+      .pipe(
+        map((resp: PacienteInterface) => resp.paciente)
+      );
+  }
+
+
 }

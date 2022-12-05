@@ -45,8 +45,8 @@
                         <tbody>
                             <tr *ngFor="let administrador of administradores">
                                 <td>
-                                    <img [src]="administrador.img" alt="Imagen de Personal" class="avatar cursor"
-                                        (click)="abrirModal(administrador)">
+                                    <img [src]="administrador.img | imagen: 'administradores'" alt=""
+                                        class="avatar cursor" (click)="abrirModal(administrador)">
                                 </td>
                                 <td>{{administrador.img}}</td>
                                 <td class="">{{administrador.email}}</td>

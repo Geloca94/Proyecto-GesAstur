@@ -58,7 +58,7 @@ const actualizarMedico = async (req, res = response) => {
         if (!medico) {
             return res.status(400).json({
                 ok: true,
-                msg: 'Medico no encontrado',
+                msg: 'Medico no encontrados',
             });
         }
 
@@ -289,6 +289,31 @@ const getMedicoById = async (req, res = response) => {
     }
 }
 
+const getPacienteById = async (req, res = response) => {
+
+    const id = req.params.id;
+    try {
+
+        const paciente = await Paciente.findById(id)
+            .populate('medico', 'nombre')
+            .populate('hospital', 'nombre');
+
+        res.json({
+            ok: true,
+            paciente,
+
+        })
+    } catch (error) {
+        console.log(error);
+
+        res.json({
+            ok: true,
+            msg: 'Paciente no encontrado',
+
+        })
+
+    }
+}
 
 module.exports = {
     getMedico,
@@ -301,5 +326,6 @@ module.exports = {
     borrarPaciente,
     darCita,
     getMedicoById,
+    getPacienteById,
 
 }
