@@ -51,8 +51,8 @@ export class IncidenciaComponent implements OnInit {
           .subscribe(resp => {
             this.cargarIncidencias();
             Swal.fire(
-              'Medico borrado',
-              `${incidencia.nombre} fue eliminado Correctamente`,
+              'Incidencia Resuelta',
+              `${incidencia.nombre} fue resuelta Correctamente`,
               'success'
             );
           })

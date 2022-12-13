@@ -7,6 +7,7 @@ const Medico = require('../models/medico');
 const Hospital = require('../models/hospital');
 const Paciente = require('../models/paciente');
 const Incidencia = require('../models/incidencia');
+const Cita = require('../models/cita');
 // getTodo
 
 
@@ -17,11 +18,12 @@ const getTodo = async (req, res = response) => {
 
 
 
-    const [administradores, medicos, hospitales, pacientes, incidencias] = await Promise.all([
+    const [administradores, medicos, hospitales, pacientes, incidencias, citas] = await Promise.all([
         Administrador.find({ nombre: regex }),
         Medico.find({ nombre: regex }),
         Hospital.find({ nombre: regex }),
         Paciente.find({ nombre: regex }),
+        Cita.find({ nombre: regex }),
         Incidencia.find({ nombre: regex })
 
     ])
@@ -32,6 +34,7 @@ const getTodo = async (req, res = response) => {
         medicos,
         hospitales,
         pacientes,
+        citas,
         incidencias
     })
 
@@ -64,6 +67,13 @@ const getDocumentosColeccion = async (req, res = response) => {
         case 'pacientes':
 
             data = await Paciente.find({ nombre: regex })
+                .populate('medico', 'nombre')
+                .populate('hospital', 'nombre');
+            break;
+        case 'citas':
+
+            data = await Cita.find({ nombre: regex })
+                .populate('paciente', 'nombre')
                 .populate('medico', 'nombre')
                 .populate('hospital', 'nombre');
             break;

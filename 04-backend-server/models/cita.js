@@ -1,12 +1,15 @@
 const { Schema, model, SchemaType } = require('mongoose');
 const hospital = require('./hospital');
 const medico = require('./medico');
-const paciente = reqire('./paciente');
+const paciente = require('./paciente');
 const { collection } = require('./administrador');
 
 const CitaSchema = Schema({
 
-
+    nombre: {
+        type: String,
+        required: true
+    },
     medico: {
         type: Schema.Types.ObjectId,
         ref: 'Medico',
@@ -14,21 +17,25 @@ const CitaSchema = Schema({
     },
     paciente: {
         type: Schema.Types.ObjectId,
-        ref: 'paciente',
+        ref: 'Paciente',
         required: true
     },
     hospital: {
         type: Schema.Types.ObjectId,
         ref: 'Hospital',
     },
-    dia: {
-        type: Number,
+    fecha: {
+        type: Date,
         require: true
 
     },
     descripcion: {
         type: String,
         require: true
+    },
+    asistencia: {
+        type: Boolean,
+
     },
 
 }, { collection: 'citas' });

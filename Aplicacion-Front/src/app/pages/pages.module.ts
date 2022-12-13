@@ -32,6 +32,7 @@ import { PoliticaDatosComponent } from './politica-datos/politica-datos.componen
 import { PacientesComponent } from './mantenimientos/pacientes/pacientes.component';
 import { RegistrarPacientesComponent } from './mantenimientos/pacientes/registrar-pacientes.component';
 import { ActualizarPacienteComponent } from './mantenimientos/pacientes/actualizar-paciente.component';
+import { CitasComponent } from './mantenimientos/citas/citas.component';
 
 
 
@@ -58,6 +59,7 @@ import { ActualizarPacienteComponent } from './mantenimientos/pacientes/actualiz
     PacientesComponent,
     RegistrarPacientesComponent,
     ActualizarPacienteComponent,
+    CitasComponent,
   ],
   exports: [
     DashboardComponent,
@@ -73,6 +75,7 @@ import { ActualizarPacienteComponent } from './mantenimientos/pacientes/actualiz
     PacientesComponent,
     RegistrarPacientesComponent,
     ActualizarPacienteComponent,
+    CitasComponent,
     //PerfilComponent
   ],
   imports: [

@@ -18,7 +18,9 @@ const getMedico = async (req, res = response) => {
 
 const crearMedico = async (req, res = response) => {
 
+    //ID del Administrador
     const uid = req.uid;
+    //Medico Nuevo
     const medico = new Medico({
         administrador: uid,
         ...req.body
@@ -117,6 +119,7 @@ const borrarMedico = async (req, res = response) => {
     }
 }
 const crearPaciente = async (req, res = response) => {
+
     const uid = req.uid;
     const paciente = new Paciente({
         medico: uid,
@@ -226,12 +229,18 @@ const borrarPaciente = async (req, res = response) => {
 }
 
 const darCita = async (req, res = response) => {
-    const id = req.params.id;
+
+    res.json({
+        ok: true,
+        msg: 'dar Cita'
+    })
+
+    /*const pacienteId = req.params.id;
     const uid = req.uid;
 
     try {
 
-        const paciente = await Paciente.findById(id);
+        const paciente = await Paciente.findById(pacienteId);
 
         if (!paciente) {
             return res.status(400).json({
@@ -261,6 +270,7 @@ const darCita = async (req, res = response) => {
             msg: 'Hable con el administrador'
         })
     }
+    */
 }
 
 const getMedicoById = async (req, res = response) => {

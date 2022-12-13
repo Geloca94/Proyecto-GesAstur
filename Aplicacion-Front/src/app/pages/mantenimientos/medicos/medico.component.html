@@ -1,84 +1,103 @@
-<div class="card">
-    <div class="card-body">
+<div class="container">
+    <div class="justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
 
-        <h4 class="card-title">Actualizar Medico</h4>
-        <h6 class="card-subtitle">Rellene los campos correspondientes * es obligatorio</h6>
+                    <div class="col-8">
 
-        <form class="form-horizontal p-t-20" [formGroup]="medicoForm" (submit)="guardarMedico()">
+                        <h4 class="card-title">Actualizar Medico</h4>
+                        <h6 class="card-subtitle">Rellene los campos correspondientes * es obligatorio</h6>
+                    </div>
+                    <div class="col">
 
-            <div class="form-group row" *ngIf="medicoSeleccionado">
-                <label for="uname" class="col-sm-3 control-label">Foto</label>
+                        <div class="text-right">
+                            <a class="btn btn-primary" routerLink="/dashboard/medicos">
+                                <i class="icon-people"> Volver</i>
+                            </a>
+                        </div>
 
-                <div class="col-sm-9">
-                    <div class="input-group">
-                        <img [src]="medicoSeleccionado.img | imagen: 'medicos'" class="avatarEditar" />
                     </div>
                 </div>
 
-            </div>
+                <form class="form-horizontal p-t-20" [formGroup]="medicoForm" (submit)="guardarMedico()">
 
+                    <div class="form-group row" *ngIf="medicoSeleccionado">
+                        <label for="uname" class="col-sm-3 control-label">Foto</label>
 
-            <div class="form-group row">
-                <label for="uname" class="col-sm-3 control-label">Nombre*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <img [src]="medicoSeleccionado.img | imagen: 'medicos'" class="avatarEditar" />
+                            </div>
+                        </div>
 
-                <div class="col-sm-9">
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="ti-user"></i></div>
-                        <input type="text" formControlName="nombre" class="form-control" id="uname"
-                            placeholder="Nombre del Medico">
                     </div>
-                </div>
 
-            </div>
 
-            <div class="form-group row">
-                <label for="uname" class="col-sm-3 control-label">Email*</label>
+                    <div class="form-group row">
+                        <label for="uname" class="col-sm-3 control-label">Nombre*</label>
 
-                <div class="col-sm-9">
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="ti-user"></i></div>
-                        <input type="text" formControlName="email" class="form-control" id="email"
-                            placeholder="Email del Medico">
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" formControlName="nombre" class="form-control" id="uname"
+                                    placeholder="Nombre del Medico">
+                            </div>
+                        </div>
+
                     </div>
-                </div>
 
-            </div>
+                    <div class="form-group row">
+                        <label for="uname" class="col-sm-3 control-label">Email*</label>
 
-            <div class="form-group row">
-                <label for="web1" class="col-sm-3 control-label">Hospital*</label>
-                <div class="col-sm-9">
-                    <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-building-o"></i></div>
-                        <select class="form-control" formControlName="hospital_id">
-                            <option value="">Seleccione Hospital</option>
-                            <option *ngFor="let hospital of hospitales" [value]="hospital._id">{{hospital.nombre}}
-                            </option>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="ti-user"></i></div>
+                                <input type="text" formControlName="email" class="form-control" id="email"
+                                    placeholder="Email del Medico">
+                            </div>
+                        </div>
 
-                        </select>
                     </div>
-                </div>
-            </div>
 
-            <div class="form-group row" *ngIf="hospitalSeleccionado">
-                <label for="uname" class="col-sm-3 control-label">Imagen</label>
-                <div class="col-sm-9">
-                    <h4 class="card-title">{{hospitalSeleccionado?.nombre}}</h4>
-                    <div class="input-group">
+                    <div class="form-group row">
+                        <label for="web1" class="col-sm-3 control-label">Hospital*</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="fa fa-building-o"></i></div>
+                                <select class="form-control" formControlName="hospital_id">
+                                    <option value="">Seleccione Hospital</option>
+                                    <option *ngFor="let hospital of hospitales" [value]="hospital._id">
+                                        {{hospital.nombre}}
+                                    </option>
 
-                        <img [src]="hospitalSeleccionado.img | imagen: 'hospitales'" class="avatarEditar" />
+                                </select>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
+                    <div class="form-group row" *ngIf="hospitalSeleccionado">
+                        <label for="uname" class="col-sm-3 control-label">Imagen</label>
+                        <div class="col-sm-9">
+                            <h4 class="card-title">{{hospitalSeleccionado?.nombre}}</h4>
+                            <div class="input-group">
+
+                                <img [src]="hospitalSeleccionado.img | imagen: 'hospitales'" class="avatarEditar" />
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9 ">
+                            <button type="submit" [disabled]="medicoForm.invalid"
+                                class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-save"> Guardar Cambios</i></button>
+                        </div>
+                    </div>
+                </form>
             </div>
-
-
-            <div class="form-group row m-b-0">
-                <div class="offset-sm-3 col-sm-9 ">
-                    <button type="submit" [disabled]="medicoForm.invalid"
-                        class="btn btn-success waves-effect waves-light">
-                        <i class="fa fa-save"> Guardar Cambios</i></button>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
 </div>

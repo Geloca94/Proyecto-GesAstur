@@ -26,6 +26,7 @@ import { PoliticaDatosComponent } from './politica-datos/politica-datos.componen
 import { RegistrarPacientesComponent } from './mantenimientos/pacientes/registrar-pacientes.component';
 import { PacientesComponent } from './mantenimientos/pacientes/pacientes.component';
 import { ActualizarPacienteComponent } from './mantenimientos/pacientes/actualizar-paciente.component';
+import { CitasComponent } from './mantenimientos/citas/citas.component';
 
 //ng-router tab y haces un sniped
 
@@ -35,7 +36,7 @@ const routes: Routes = [
         component: PagesComponent,
         canActivate: [AuthGuard],
         children: [
-            { path: '', component: DashboardComponent, data: { titulo: 'Dasboard' } },
+            { path: '', component: DashboardComponent, data: { titulo: '' } },
             { path: 'progress', component: ProgessComponent, data: { titulo: 'ProgressBar' } },
             { path: 'grafica1', component: Grafica1Component, data: { titulo: 'Grafica #1' } },
             { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes de Cuenta' } },
@@ -56,6 +57,7 @@ const routes: Routes = [
             { path: 'medicos/registrarPaciente', component: RegistrarPacientesComponent, data: { titulo: 'Registrar Paciente' } },
             { path: 'medicos/listaPaciente', component: PacientesComponent, data: { titulo: 'Pacientes' } },
             { path: 'medicos/actualizarPaciente/:id', component: ActualizarPacienteComponent, data: { titulo: 'Actualizar Pacientes' } },
+            { path: 'listarCitas', component: CitasComponent, data: { titulo: 'Citas' } },
         ]
     },
 ];

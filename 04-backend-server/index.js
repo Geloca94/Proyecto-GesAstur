@@ -34,6 +34,7 @@ app.use('/api/todo', require('./routes/busquedas'));
 app.use('/api/login', require('./routes/auth'));
 app.use('/api/upload', require('./routes/uploades'));
 app.use('/api/incidencias', require('./routes/incidencias'));
+app.use('/api/citas', require('./routes/citas'));
 
 
 app.listen(process.env.PORT, () => {
