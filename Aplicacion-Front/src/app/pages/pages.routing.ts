@@ -27,6 +27,7 @@ import { RegistrarPacientesComponent } from './mantenimientos/pacientes/registra
 import { PacientesComponent } from './mantenimientos/pacientes/pacientes.component';
 import { ActualizarPacienteComponent } from './mantenimientos/pacientes/actualizar-paciente.component';
 import { CitasComponent } from './mantenimientos/citas/citas.component';
+import { CrearCitaComponent } from './mantenimientos/citas/crear-cita.component';
 
 //ng-router tab y haces un sniped
 
@@ -58,6 +59,7 @@ const routes: Routes = [
             { path: 'medicos/listaPaciente', component: PacientesComponent, data: { titulo: 'Pacientes' } },
             { path: 'medicos/actualizarPaciente/:id', component: ActualizarPacienteComponent, data: { titulo: 'Actualizar Pacientes' } },
             { path: 'listarCitas', component: CitasComponent, data: { titulo: 'Citas' } },
+            { path: 'crearCitas', component: CrearCitaComponent, data: { titulo: 'Crear Cita' } },
         ]
     },
 ];

@@ -1,0 +1,120 @@
+<div class="container">
+    <div class="justify-content-center">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-8">
+
+                        <h4 class="card-title">Registrar Cita</h4>
+                        <h6 class="card-subtitle">Rellene los campos correspondientes * es obligatorio</h6>
+
+                    </div>
+
+                    <div class="col">
+
+                        <div class="text-right">
+                            <a class="btn btn-primary" routerLink="/dashboard/listarCitas">
+                                <i class="icon-people"> Volver</i>
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <form class="form-horizontal m-t-40" [formGroup]="citaForm" (submit)="guardarCita()">
+
+
+                    <div class="form-group row">
+                        <label for="nombre" class="col-sm-3">Causa de la Cita </label>
+
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="mdi mdi-account-card-details"></i></div>
+                                <input type="text" formControlName="nombre" class="form-control" id="uname"
+                                    placeholder="Causa de la Cita">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="uname" class="control-label col-sm-3">Descripcion</label>
+
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <textarea class="textarea_editor form-control" rows="10" formControlName="descripcion"
+                                    placeholder="Descripcion del paciente"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="uname" class="col-sm-3 control-label">Edad del paciente*</label>
+
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="mdi mdi-calendar"></i></div>
+                                <input type="date" formControlName="fecha" class="form-control" id="uname"
+                                    placeholder="Edad del Paciente">
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="web1" class="col-sm-3 control-label">Paciente que sera atendido en la cita</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="mdi mdi-medical-bag"></i></div>
+                                <select class="form-control" formControlName="paciente">
+                                    <option value="">Seleccione Paciente</option>
+                                    <option *ngFor="let paciente of pacientes" [value]="paciente._id">
+                                        {{paciente.nombre}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="web1" class="col-sm-3 control-label">Medico que realizara la cita</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="mdi mdi-medical-bag"></i></div>
+                                <select class="form-control" formControlName="medico">
+                                    <option value="">Seleccione Medico</option>
+                                    <option *ngFor="let medico of medicos" [value]="medico._id">{{medico.nombre}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="web1" class="col-sm-3 control-label">Hospital de la cita</label>
+                        <div class="col-sm-9">
+                            <div class="input-group">
+                                <div class="input-group-addon"><i class="mdi mdi-hospital-building"></i></div>
+                                <select class="form-control" formControlName="hospital">
+                                    <option value="">Seleccione Hospital</option>
+                                    <option *ngFor="let hospital of hospitales" [value]="hospital._id">
+                                        {{hospital.nombre}}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group row m-b-0">
+                        <div class="offset-sm-3 col-sm-9 ">
+                            <button type="submit" [disabled]="citaForm.invalid"
+                                class="btn btn-success waves-effect waves-light">
+                                <i class="fa fa-save"> Guardar Cambios</i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -27,6 +27,13 @@ export class CitaService {
     }
   }
 
+  crearCitas(cita: { nombre: string, descripcion: string, fecha: Date, asistencia: boolean, medico: string, hospital: string, paciente: string }) {
+
+    const url = `${base_url}/citas`;
+    return this.http.post(url, cita, this.headers);
+
+  }
+
   cargarCitas() {
     const url = `${base_url}/citas`;
     return this.http.get<CitasInterface>(url, this.headers)

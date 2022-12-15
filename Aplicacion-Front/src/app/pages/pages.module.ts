@@ -33,6 +33,7 @@ import { PacientesComponent } from './mantenimientos/pacientes/pacientes.compone
 import { RegistrarPacientesComponent } from './mantenimientos/pacientes/registrar-pacientes.component';
 import { ActualizarPacienteComponent } from './mantenimientos/pacientes/actualizar-paciente.component';
 import { CitasComponent } from './mantenimientos/citas/citas.component';
+import { CrearCitaComponent } from './mantenimientos/citas/crear-cita.component';
 
 
 
@@ -60,6 +61,7 @@ import { CitasComponent } from './mantenimientos/citas/citas.component';
     RegistrarPacientesComponent,
     ActualizarPacienteComponent,
     CitasComponent,
+    CrearCitaComponent,
   ],
   exports: [
     DashboardComponent,
