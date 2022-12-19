@@ -52,9 +52,9 @@ export class PerfilComponent implements OnInit {
 
 
         //Funcion para recargar la pagina
-        /* setTimeout(() => {
-           window.location.href = window.location.href;
-         }, 500);*/
+        setTimeout(() => {
+          window.location.href = window.location.href;
+        }, 500);
 
       }, (err) => {
         Swal.fire('No se pudo guardar los cambios', err.error.msg, 'error');

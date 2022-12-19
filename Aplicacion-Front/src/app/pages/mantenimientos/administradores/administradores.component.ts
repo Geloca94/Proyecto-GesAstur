@@ -111,12 +111,6 @@ export class AdministradoresComponent implements OnInit {
     return;
   }
 
-  cambiarRol(administrador: Administrador) {
-    this.administradorService.guardarAdministradorRol(administrador)
-      .subscribe(resp => {
-        //console.log(resp);
-      })
-  }
 
   abrirModal(administrador: Administrador) {
     if (administrador.uid) {
