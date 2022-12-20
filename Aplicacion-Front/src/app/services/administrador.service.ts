@@ -67,12 +67,13 @@ export class AdministradorService {
         const {
           email,
           nombre,
-          img = '',
+          img,
+          password,
           role,
           uid
         } = resp.administrador
 
-        this.administrador = new Administrador(nombre, email, '', img, role, uid)
+        this.administrador = new Administrador(nombre, email, img, password, role, uid)
 
         localStorage.setItem('token', resp.token);
         return true;
@@ -126,7 +127,7 @@ export class AdministradorService {
         map(resp => {
           console.log(resp);
           const administradores = resp.administradores.map(
-            administrador => new Administrador(administrador.nombre, administrador.email, '', administrador.img, administrador.role, administrador.uid)
+            administrador => new Administrador(administrador.nombre, administrador.email, administrador.img, administrador.role, administrador.uid)
           );
 
           return {

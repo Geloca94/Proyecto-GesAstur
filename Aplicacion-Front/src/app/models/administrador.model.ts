@@ -8,8 +8,8 @@ export class Administrador {
         public nombre: string,
         public email: string,
         public img: string,
-        public password?: string,
         public role?: string,
+        public password?: string,
         public uid?: string,
         //public google?: boolean,
     ) { }

@@ -41,6 +41,7 @@ export class AdministradoresComponent implements OnInit {
         this.totalAdministradores = total;
         this.administradores = administradores;
         this.administradoresTemp = administradores;
+        console.log(this.administradores)
         this.cargando = false;
       })
   }

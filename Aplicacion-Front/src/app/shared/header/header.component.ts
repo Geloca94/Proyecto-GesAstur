@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Administrador } from 'src/app/models/administrador.model';
 import { AdministradorService } from 'src/app/services/administrador.service';
+import { ModalImagenService } from 'src/app/services/modal-imagen.service';
 
 @Component({
   selector: 'app-header',
@@ -12,16 +13,34 @@ import { AdministradorService } from 'src/app/services/administrador.service';
 export class HeaderComponent {
 
   public administrador: Administrador;
+  public totalAdministradores: number = 0;
+  public administradores: Administrador[] = [];
+  //Variable para almacenar los administradores Temporalmente y no perderlos al realizar la busqueda
+  public administradoresTemp: Administrador[] = [];
+
+  public desde: number = 0;
 
   constructor(
+    private modalImagenService: ModalImagenService,
     private administradorService: AdministradorService,
+
     private router: Router) {
     this.administrador = administradorService.administrador;
 
   }
 
+
   logout() {
     this.administradorService.logout();
+  }
+  cargarAdministradores() {
+    this.administradorService.cargarAdministradores(this.desde)
+      .subscribe(({ total, administradores }) => {
+        this.totalAdministradores = total;
+        this.administradores = administradores;
+        this.administradoresTemp = administradores;
+        console.log(this.administradores)
+      })
   }
 
   buscar(termino: string) {
